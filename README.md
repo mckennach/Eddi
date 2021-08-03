@@ -1,8 +1,10 @@
 [![Build Status](https://travis-ci.org/Shopify/starter-theme.svg?branch=master)](https://travis-ci.org/Shopify/starter-theme)
 
-# Starter Theme
+# Eddi Theme
 
-> **Starter Theme and [Slate v1](https://github.com/Shopify/slate) are currently in beta!** You should expect potentially breaking changes between updates and more bugs than a finalized release. Slate v1.0 has not yet been tested on Windows.
+> **Sitemap: (https://eddi-soap.myshopify.com/sitemap.xml)
+> **Admin: (https://eddi-soap.myshopify.com/admin)
+
 
 Starter Theme represents the Shopify Themes Team's opinionated starting point for new Slate theme projects. It strives to include up-to-date best practices and solutions that we have deemed needed for the majority of themes we build. It is a reflection of what’s possible when building a theme!
 
