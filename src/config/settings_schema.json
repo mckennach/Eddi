@@ -1,10 +1,10 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Starter theme",
+    "theme_name": "Eddi theme",
     "theme_version": "1.0.0",
-    "theme_author": "THEME_AUTHOR",
-    "theme_documentation_url": "https:\/\/THEME_DOCUMENTATION_URL.com\/",
+    "theme_author": "Chris McKenna",
+    "theme_documentation_url": "https:\/\/github.com/mckennach\/Eddi\/wiki",
     "theme_support_url": "https:\/\/THEME_SUPPORT_URL.com\/"
   },
   {

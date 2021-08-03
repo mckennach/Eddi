@@ -15,6 +15,32 @@ Admin: https://eddi-soap.myshopify.com/admin
 - **Mobile Footer Menu:** In the [Mobile footer menu](https://eddi-soap.myshopify.com/admin/menus/188398043329), you'll see `Column 1`, `Column 2`, etc. This splits the menu items into groups. If you add a new column, make sure to style it the same way otherwise it won't show up.
 
 
+## Customizer
+
+- When making changes to the Theme
+  - Admin > Themes > Live Theme > Actions > **Duplicate**
+    - This will be useful when drafting Copy/images
+  - Once changes are made and good to go
+    - *Drafted Theme* > Actions > Publish
+
+## Materials page  
+
+**When adding a new material:**
+
+1. Material > Add Block
+2. Material
+  - Add Image with width of `1200px`. **Use one of the existing images as a guide.**
+  - I did it this way so the shadows would display properly
+3. Material Descriptor will then follow this image. *If you add it before the correct image, it will show up there*
+4. Make sure to align the dot with the Coordinate Slider. Should be able to see where it will be located.
+
+
+Template Image:
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Untitled-3_1200x800_f05a9cb1-520b-41f8-9fb5-8cc05dc1c807_1200x800.png?v=1627337643 "Refill Content")
+
+
+
+
 ## Create Your Own 4-Pack
 
 **Variants:** If you decide to anymore options to the customer builder, make sure to make the SKU alphabetical.
@@ -31,9 +57,20 @@ This way, the sorting function will be able to create the custom bundles.
 - Each variant will be a group of 5. Make sure to upload all 5 at the same time at the end of the `Media Library`, and attach the *first* image to the variant it belongs to.
   - If everything is out of order, the image grouping might be word
 
+## Refills
+
+-  Make sure to add `Refills` to Product Type
+
+
 ## Custom Fields
 
+- Product > *Select Product* > More Actions > *Edit Custom Fields*
+
+
 **Refill Content:**
+
+- Select `Full Width Image` to make it stretch across the screen
+- Select `Check to show full width video` to use video, and then add video ID from vimeo
 
 ![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.33.23_PM.png?v=1627972423 "Refill Content")
 
@@ -46,6 +83,8 @@ This way, the sorting function will be able to create the custom bundles.
 **Icon List:**
 
 ![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.35.29_PM.png?v=1627972549 "Icon List")
+
+- Add Ico
 
 
 **Accordion:**
@@ -79,6 +118,10 @@ This way, the sorting function will be able to create the custom bundles.
 
 ![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.17.03_PM.png?v=1628006777 "Icon List")
 
+
+## Recharge
+
+**Docs:** https://support.rechargepayments.com/hc/en-us/articles/360008829993-Recharge-API-
 
 
 ## Links & Guide
