@@ -64,13 +64,20 @@ This way, the sorting function will be able to create the custom bundles.
 
 **Flagrance Section:**
 
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.17.22_PM_69540da2-5927-44f0-af64-dac824a715c9.png?v=1628006631 "Icon List")
+
 **Natural Scent:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.17.32_PM.png?v=1628006611 "Icon List")
 
 **Highlighted Notes:**
 
-**Press Slideshow:**
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-03_at_9.05.23_AM.png?v=1628006739 "Icon List")
+
 
 **Weekend Collection:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.17.03_PM.png?v=1628006777 "Icon List")
 
 
 
