@@ -1,0 +1,244 @@
+
+<footer>
+
+
+  <div class="container">
+    <div class="desktop-hide">
+      {% include "icon-submark" %}
+    </div>
+    <div class="cols-footer">
+      <div class="">
+        <div class="">
+          <div class="mobile-hide">
+            {% include "icon-wordmark-white" %}
+          </div>
+
+        </div>
+        {%- assign social_accounts = 'Instagram, Facebook, Twitter, Pinterest, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+        <ul class="d-flex social-icons">
+          {% for social in social_accounts %}
+            {%- assign social_handle = social | handleize -%}
+            {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
+            {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+
+            {% if settings[social_link] != blank %}
+              <li>
+                <a href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}" target="_blank">
+                  {% include social_icon %}
+                  <span class="icon-fallback-text">{{ social }}</span>
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'icons' %}
+                <li class="copyright__icon desktop-hide">
+                  <img src="{{ block.settings.icon | img_url: 'master' }}" alt="">
+                </li>
+            {% endcase %}
+          {% endfor %}
+        </ul>
+      </div>
+      <nav class="link-list">
+        {%- assign footer_linklist = section.settings.footer_linklist -%}
+        {% if linklists[footer_linklist].links.size > 0 %}
+        <div class="mobile-hide">
+          <ul class="desktop-footer-nav d-md-flex justify-content-between ">
+            {% for link in linklists[footer_linklist].links %}
+              <li>
+                <span class="link-title">{{ link.title }}</span>
+                <ul>
+                  {%- for childlink in link.links -%}
+                    <li>
+                      <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% endif %}
+
+
+        {%- assign mobile_linklist = section.settings.mobile_linklist -%}
+        {% if linklists[mobile_linklist].links.size > 0 %}
+        <div class="desktop-hide">
+          <ul class="mobile-footer-nav d-flex justify-content-between">
+            {% for link in linklists[mobile_linklist].links %}
+              <li class="">
+                <ul>
+                  {%- for childlink in link.links -%}
+                    <li>
+                      <a href="{{ childlink.url }}">{{ childlink.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% endif %}
+
+
+      </nav>
+      <div class="newsletter-signup-container">
+        <div class="newsletter-signup">
+          <h3>{{ section.settings.newsletter-title }}</h3>
+          <form id="klaviyo_popup" class="klaviyo_gdpr_embed_{{ section.settings.list_id }}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+            <input type="hidden" name="g" value="{{ section.settings.list_id }}">
+            <input type="hidden" name="$fields" value="$consent">
+            <input type="hidden" name="$list_fields" value="$consent">
+            <input type="hidden" name="$consent" value="email">
+
+            <div class="form-actual">
+              <div class="input-container">
+                <input type="email" value="" name="email" id="k_id_email" placeholder="EMAIL ADDRESS" />
+                <button type="submit" class="">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14.018" height="9.35" viewBox="0 0 14.018 9.35">
+                    <path id="Icon_ionic-ios-arrow-round-forward" data-name="Icon ionic-ios-arrow-round-forward" d="M16.815,11.431a.636.636,0,0,0,0,.9l2.96,2.965H8.5a.633.633,0,0,0,0,1.266H19.765L16.8,19.523a.641.641,0,0,0,0,.9.63.63,0,0,0,.891,0l4.012-4.041h0a.711.711,0,0,0,.131-.2.6.6,0,0,0,.049-.243.635.635,0,0,0-.18-.443L17.7,11.445A.62.62,0,0,0,16.815,11.431Z" transform="translate(-7.875 -11.251)" fill="#fff"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="klaviyo_messages">
+                <div class="success_message alert alert-success" style="display:none;"></div>
+                <div class="error_message alert alert-danger" style="display:none;"></div>
+              </div>
+            </div>
+          </form>
+          <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+          <script type="text/javascript">
+            KlaviyoSubscribe.attachToForms('#klaviyo_popup', {
+              hide_form_on_success: true,
+              success_message: '{{ section.settings.success | escape }}',
+              success: function($form) {
+                Cookies.set('popup_display', 'n', {
+                  expires: parseInt($('.popup').attr('data-remember'))
+                });
+              },
+            });
+          </script>
+          <p>{{ section.settings.newsletter-desc }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright d-flex align-items-center ">
+      <div class="d-md-flex flex-column">
+        <div class="d-flex">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'icons' %}
+                <div class="copyright__icon mobile-hide">
+                  <img src="{{ block.settings.icon | img_url: 'master' }}" alt="">
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+        <div class="">
+          <small>&copy; {{ 'now' | date: "%Y" }} Eddi Products, Inc. All Rights Reserved.</small>
+        </div>
+
+        {%- assign legal_linklist = section.settings.legal_linklist -%}
+        {% if linklists[legal_linklist].links.size > 0 %}
+        <div class="">
+          <ul class="mobile-legal-nav d-flex ">
+            {% for link in linklists[legal_linklist].links %}
+              <li class="d-flex align-items-center">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+                {% unless forloop.last %}
+                  <div class="divider"> | </div>
+                {% endunless %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        {% endif %}
+      </div>
+
+
+      <div class="hide" style="margin-left: 15px;">
+        {% include "icon-cert" %}
+
+      </div>
+      <div class="hide" style="margin-left: 15px;">
+        {% include "icon-1-percent" %}
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "First menu",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "mobile_linklist",
+        "label": "Mobile menu"
+      },
+      {
+        "type": "link_list",
+        "id": "legal_linklist",
+        "label": "Legal menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "newsletter-title",
+        "label": "Newsletter Title"
+      },
+      {
+        "type": "text",
+        "id": "newsletter-desc",
+        "label": "Newsletter Description"
+      },
+      {
+        "type": "text",
+        "id": "list_id",
+        "label": "List ID",
+        "info": "[Find your list ID](https://help.klaviyo.com/hc/en-us/articles/115005078647-Find-a-List-ID)"
+      },
+      {
+        "type": "url",
+        "id": "legal_link",
+        "label": "Legal link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icons",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "info": "use PNGs",
+            "label": "Icon"
+          }
+        ]
+      }
+    ]
+  }
+
+{% endschema %}

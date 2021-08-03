@@ -1,0 +1,104 @@
+<section class="our_team">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2 class="our_team--title">{{ section.settings.title }}</h2>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'section' %}
+          <div class=" our_team--section">
+            <div class="cols-2">
+              {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+
+              {% if thecycle == 'odd' %}
+                <div class="our_team--{{ thecycle }}">
+                  {% if block.settings.image != blank %}
+                    <div class="lazyload our_team--member-img" data-bgset="{% include 'responsive-bg-image', image: block.settings.image %}"></div>
+                  {% endif %}
+                </div>
+              {% endif %}
+
+              <div class="our_team--txt-{{ thecycle }}">
+                {% if block.settings.title != blank %}
+                  <h4 class="our_team--member-title">{{ block.settings.title }}</h4>
+                {% endif %}
+                {% if block.settings.title != blank %}
+                  <h3 class="our_team--member-name">{{ block.settings.name }}</h3>
+                {% endif %}
+                {% if block.settings.desc != blank %}
+                  <div class="our_team--member-desc">{{ block.settings.desc }}</div>
+                {% endif %}
+              </div>
+
+              {% if thecycle == 'even' %}
+                <div class=" our_team--{{ thecycle }}">
+                  {% if block.settings.image != blank %}
+                    <div class="lazyload our_team--member-img" data-bgset="{% include 'responsive-bg-image', image: block.settings.image %}"></div>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+            <div class="our_team--blob">
+
+
+              {% if thecycle == 'even' %}
+                <img src="https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Rectangle_1108_2x_d5738bfc-507b-44ae-849d-98873bf58187.png?v=1626061760" alt="">
+
+              {% else %}
+                <img src="https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Rectangle_11081_2x_56ea2794-447b-402a-95fb-070f69137372.png?v=1626061862" alt="">
+
+              {% endif %}
+            </div>
+          </div>
+
+
+
+
+
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Meet Our Team",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "section",
+        "name": "Section",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Name"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

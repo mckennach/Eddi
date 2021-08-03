@@ -1,0 +1,55 @@
+<section class="product_quickview product_quickview" data-product-id="{{ product.id }}" style="display: none;">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="product_quickview--modal">
+      <div class="cols-2">
+        <div class="lazyload product_quickview--img" data-bgset="{% include 'responsive-bg-image', image: product.images[1] %}"></div>
+        <div class="product_quickview--txt-container">
+
+          <div class="product_quickview--close-modal">
+            <span></span>
+          </div>
+
+          {% if product.metafields.custom_fields["set_icon_hover_state"] != blank %}
+            <div class="product_quickview--icon">
+              <img src="{{ product.metafields.custom_fields["set_icon_hover_state"] }}" alt="{{ product.title }}">
+            </div>
+          {% endif %}
+
+          {% include "product-highlighted-notes" %}
+
+          <h2 class="product_quickview--title">{{ product.title }}</h2>
+
+          {% if product.metafields.custom_fields["secondary_description"] != blank %}
+            <div class="product_quickview--desc">
+              {{ product.metafields.custom_fields["secondary_description"] }}
+            </div>
+          {% endif %}
+
+          {% include "product-note-list" %}
+
+          <div class="gradient_cta d-flex flex-column justify-content-center align-items-center">
+            <div class="d-flex align-items-center justify-content-around w-85">
+                <div class="">
+                  {% include "icon-all-natural" %}
+                </div>
+                <h3 class="gradient_cta--title">Vegan, Cruelty-Free & Plant Based Soap</h3>
+             </div>
+          </div>
+
+          <div class="product_quickview--link-container d-flex align-items-center justify-content-center {{ product.handle }}">
+            <div class="product_quickview--link">
+              <a href="#">SCENT NOTES</a>
+            </div>
+            {% if product.metafields.custom_fields["playlist"] != blank %}
+              <span>&nbsp;&nbsp;&#124;&nbsp;&nbsp;</span>
+              <div class="product_quickview--link">
+                {{ product.metafields.custom_fields["playlist"] }}
+              </div>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

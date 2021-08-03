@@ -1,0 +1,33 @@
+#blog-landing {
+  .featured_articles {
+    &--txt-container {
+      padding: 25rem 0;
+      background: $gray;
+      text-align: center;
+    }
+
+    &--blog-title {
+      @include noto-reg-12;
+      @include letter-spacing(200);
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    &--article-title {
+      @include abhaya-reg-55;
+      line-height: 65px;
+      margin-bottom: 20px;
+
+    }
+
+    &--excerpt {
+      @include gotham-book-20;
+      margin-bottom: 30px;
+
+    }
+
+    button {
+      background: $chartreuse;
+    }
+  }
+}

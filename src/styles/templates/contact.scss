@@ -1,0 +1,95 @@
+#contact-us {
+  #shopify-section-page-contact-questions {
+    background: #ffffff;
+
+    .row {
+      @include max-width(55);
+    }
+  }
+
+  .icon_list--icon {
+    max-width: 63px;
+  }
+
+  .cols-1-2 {
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+  }
+}
+
+.partner {
+  background: #FBF7F1;
+
+  &__inner-txt-container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__txt-container {
+    text-align: center;
+    padding: 10rem 0;
+    background: #FBF7F1;
+    @include mobile-only {
+      padding: 3rem 0;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 4.5rem;
+  }
+
+  &__title {
+    @include abhaya-reg-55;
+    @include max-width(55);
+  }
+
+  &__email {
+    margin-bottom: 2.5rem;
+  }
+
+  &__email-label {
+    @include noto-reg-20;
+  }
+
+  &__email-link {
+    @include gotham-book-15;
+  }
+
+  &__img {
+    background-position: center;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+#shopify-section-page-contact-faq .faq {
+  background: white;
+  padding: 10rem 0;
+  @include mobile-only {
+    padding: 3rem 0 4rem;
+  }
+  &--title {
+    text-align: center;
+    @include abhaya-reg-45;
+    margin-bottom: 3rem;
+    @include mobile-only {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .faq_article {
+    @include max-width(68);
+  }
+
+  .faq-btn {
+    margin-top: 45px;
+  }
+
+  .accordion:first-of-type {
+    border-top: 1px solid #C1C1C1;
+  }
+}

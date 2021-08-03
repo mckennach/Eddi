@@ -1,0 +1,75 @@
+<section class="faq">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h1 class="faq--title">{{ section.settings.title }}</h1>
+    {% endif %}
+
+    <div class="">
+      <article class="faq_article">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'faq' %}
+              {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+          {% endcase %}
+        {% endfor %}
+      </article>
+
+      {%- if section.settings.link != blank -%}
+        <div class="d-flex justify-content-center align-items-center">
+          <a href="{{ section.settings.link }}">
+            <button type="button" name="button" class="faq-btn">
+              {%- if section.settings.btn_label != blank -%}
+                {{ section.settings.btn_label }}
+              {%-  else -%}
+                Learn More
+              {%- endif -%}
+            </button>
+          </a>
+        </div>
+
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "FAQs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "btn_label",
+        "label": "Button Label"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQs",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

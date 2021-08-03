@@ -1,0 +1,60 @@
+{% include "branded-content" %}
+
+{% schema %}
+  {
+    "name": "Branded CTA",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Desc"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon",
+        "label": "Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "link_label",
+        "label": "Link label"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      },
+      {
+         "type": "select",
+         "id": "align",
+         "label": "Align Text Box",
+         "options": [
+           {
+             "value": "left",
+             "label": "Left"
+           },
+           {
+             "value": "right",
+             "label": "Right"
+           }
+         ],
+         "default": "left"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_icon",
+        "label": "Show Icon"
+      }
+    ]
+  }
+{% endschema %}

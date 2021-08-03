@@ -1,0 +1,84 @@
+<section clas="partner">
+  <div class="cols-1-2">
+    {%- if section.settings.image != blank -%}
+      <div class="lazyload partner__img" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+    {%- endif -%}
+    <div class="partner__txt-container">
+      <div class="partner__inner-txt-container">
+
+        {%- if section.settings.title != blank -%}
+        <div class="partner__heading">
+          <h2 class="partner__title">{{ section.settings.title }}</h2>
+          {%- if section.settings.desc != blank -%}
+            <div class="partner__desc">{{ section.settings.desc }}</div>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
+
+
+        <div class="partner__emails">
+          {%- if section.blocks.size > 0 -%}
+            {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'email' %}
+                  <div class="partner__email">
+                    {%- if block.settings.title != blank -%}
+                      <h4 class="partner__email-label">{{ block.settings.title }}</h4>
+                    {%- endif -%}
+                    {%- if block.settings.email != blank -%}
+
+                      <a href="mailto:{{ block.settings.email }}">
+                        {{ block.settings.email}}
+                      </a>
+
+                    {%- endif -%}
+                  </div>
+              {% endcase %}
+            {% endfor %}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Partnering",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "email",
+        "name": "Email",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "email",
+            "label": "Email"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

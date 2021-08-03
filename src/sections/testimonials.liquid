@@ -1,0 +1,69 @@
+<section class="testimonials">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h4 class="testimonials--title">{{ section.settings.title }}</h4>
+    {% endif %}
+
+    <div class="row">
+      {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'testimonial' %}
+              <div class="testimonials--item  col-md">
+                {% if block.settings.image != blank %}
+                  {% include 'responsive-image' with image: block.settings.image, image_class: "testimonials--img", wrapper_class: "testimonials--container", max_width: 700, max_height: 800 %}
+                {% else  %}
+                  {{ block.settings.title }}
+                {% endif %}
+              </div>
+          {% endcase  %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Testimonials",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Featured In"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "testimonial",
+        "name": "Testimonial",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "quote",
+            "label": "Qoute"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "info": "use PNGs",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Testimonials",
+        "category": "Dynamic Blocks"
+      }
+    ]
+  }
+{% endschema %}

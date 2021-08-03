@@ -1,0 +1,38 @@
+<div class="account-popup" tabindex="-1" data-delay="{{ section.settings.delay | times: 1000 }}" data-remember="{{ section.settings.dismiss }}">
+  <div class="account-popup__container">
+    <div class="account-popup__inner-container">
+      <div class="close-modal-account">
+        {% include "icon-close" %}
+      </div>
+      <div class="">
+        <div class="">
+          <div class="account-popup__txt-container">
+            
+            {% include "login" %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Account Popup",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ]
+  }
+
+{% endschema %}

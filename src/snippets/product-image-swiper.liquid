@@ -1,0 +1,147 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image_id = current_variant.featured_image.id -%}
+{%- assign featured_image_position = current_variant.featured_image.position -%}
+{%- assign foundImage = false -%}
+{%- assign bundle = false -%}
+{% if product.handle contains 'park-day' or product.handle contains 'happy-hour' or product.handle contains 'sunday-drive' %}
+  {% assign groupSize = 1 %}
+  {%- assign bundle = true -%}
+{% endif %}
+{% assign maxCount = 5 %}
+{% if product.handle contains 'park-day' or product.handle contains 'happy-hour' or product.handle contains 'sunday-drive' %}
+  {% assign maxCount = 5 %}
+{% endif %}
+{% if product.handle contains 'gift' %}
+  {% assign maxCount = 1 %}
+
+{% endif %}
+
+{% if product.handle contains 'dispenser'  %}
+  {% assign maxCount = 4 %}
+{% endif %}
+
+
+{%- if bundle -%}
+  <div  class="swiper-container product-detail desktop-hide" data-index="{{ forloop.index0 }}">
+    <div class="swiper-wrapper">
+      {%- for image in product.images -%}
+        {%- unless forloop.last -%}
+          <div class="swiper-slide " data-index="{{ forloop.index0 }}" data-image-id="{{ image.id }}" data-mobile-product-image>
+            <div class="{{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ image.id }}" >
+              <img src="{{ image.src | img_url: 'master' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ image | img_url }}" data-image="{{ image | img_url: 'master' }}" alt="{{ product.images[variantPosition1].alt }}" >
+            </div>
+          </div>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination pag-{{ forloop.index0 }}"></div>
+  </div>
+{%- else -%}
+  {%- for variant in product.variants -%}
+    <div id="swiper-{{ variant.id }}" class="swiper-container product-detail desktop-hide {% if current_variant.id == variant.id %} active {% else %} hide {% endif %}" data-index="{{ forloop.index0 }}">
+      <div class="swiper-wrapper">
+          {% if product.handle contains 'dispenser'  %}
+            {% assign variantPosition1 = variant.featured_image.position | minus: 1 %}
+            {% assign variantPosition2 = variant.featured_image.position %}
+            {% assign variantPosition3 = variant.featured_image.position | plus: 1   %}
+            {% assign variantPosition4 = variant.featured_image.position | plus: 2   %}
+          {% elsif product.handle contains 'starter' %}
+            {% assign variantPosition1 = variant.featured_image.position | minus: 1 %}
+            {% assign variantPosition2 = variant.featured_image.position  %}
+            {% assign variantPosition3 = variant.featured_image.position | plus: 1 %}
+            {% assign variantPosition4 = variant.featured_image.position | plus: 2 %}
+            {% assign variantPosition5 = variant.featured_image.position | plus: 3 %}
+          {% elsif product.handle contains 'gift' %}
+            {% assign variantPosition1 = variant.featured_image.position | minus: 1 %}
+          {% endif %}
+
+
+          <div class="swiper-slide " data-index="{{ forloop.index0 }}" data-image-id="{{ product.images[variantPosition1].id }}" data-mobile-product-image>
+            <div class="{{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ product.images[variantPosition1].id }}" >
+              <img src="{{ product.images[variantPosition1].src | img_url: 'master' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ product.images[variantPosition1] | img_url }}" data-image="{{ product.images[variantPosition1] | img_url: 'master' }}" alt="{{ product.images[variantPosition1].alt }}" >
+            </div>
+          </div>
+          {%- unless product.handle contains 'gift' -%}
+
+
+          <div class="swiper-slide " data-index="{{ forloop.index0 }}" data-image-id="{{ product.images[variantPosition2].id }}" data-mobile-product-image>
+            <div class="{{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ product.images[variantPosition2].id }}" >
+              <img src="{{ product.images[variantPosition2].src | img_url: 'master' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ product.images[variantPosition2] | img_url }}" data-image="{{ product.images[variantPosition2] | img_url: 'master' }}" alt="{{ product.images[variantPosition2].alt }}" >
+            </div>
+          </div>
+          <div class="swiper-slide " data-index="{{ forloop.index0 }}" data-image-id="{{ product.images[variantPosition3].id }}" data-mobile-product-image>
+            <div class="{{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ product.images[variantPosition3].id }}" >
+              <img src="{{ product.images[variantPosition3].src | img_url: 'master' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ product.images[variantPosition3] | img_url }}" data-image="{{ product.images[variantPosition3] | img_url: 'master' }}" alt="{{ product.images[variantPosition3].alt }}" >
+            </div>
+          </div>
+          <div class="swiper-slide " data-index="{{ forloop.index0 }}" data-image-id="{{ product.images[variantPosition4].id }}" data-mobile-product-image>
+            <div class="{{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ product.images[variantPosition4].id }}" >
+              <img src="{{ product.images[variantPosition4].src | img_url: 'master' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ product.images[variantPosition4] | img_url }}" data-image="{{ product.images[variantPosition4] | img_url: 'master' }}" alt="{{ product.images[variantPosition4].alt }}" >
+            </div>
+          </div>
+
+          {%- if maxCount == 5 -%}
+            <div class="swiper-slide " data-index="{{ forloop.index0 }}" data-image-id="{{ product.images[variantPosition5].id }}" data-mobile-product-image>
+              <div class="{{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ product.images[variantPosition5].id }}" >
+                <img src="{{ product.images[variantPosition5].src | img_url: 'master' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ product.images[variantPosition5] | img_url }}" data-image="{{ product.images[variantPosition5] | img_url: 'master' }}" alt="{{ product.images[variantPosition5].alt }}" >
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- endunless -%}
+
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination pag-{{ forloop.index0 }}"></div>
+    </div>
+
+
+  {%- endfor -%}
+{%- endif -%}
+
+
+
+
+
+{% comment %}
+<div class="swiper-container product-detail desktop-hide">
+  <div class="swiper-wrapper">
+    {% for image in product.images %}
+      {% capture wrapper_class %}
+        {%- unless featured_image == image -%}
+          active
+        {%- endunless -%}
+      {% endcapture %}
+
+      {%- if foundImage == false -%}
+        {% if featured_image_id == image.id %}
+          {% assign toHide = '' %}
+          {% assign foundImage = true %}
+          {% assign count = 0 %}
+        {% else %}
+          {% assign toHide = 'hide' %}
+        {% endif %}
+      {%- else -%}
+        {% assign count = count | plus: 1 %}
+        {% if count < maxCount %}
+          {% assign toHide = '' %}
+        {% else %}
+          {% assign toHide = 'hide' %}
+        {% endif %}
+      {%- endif -%}
+
+
+
+      <div class="swiper-slide {{ toHide }}" data-index="{{ forloop.index0 }}" data-image-id="{{ image.id }}" data-mobile-product-image>
+        <div class="{{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ image.id }}" >
+          <!-- <img src="{{ image | img_url }}" class="product-image product_detail_image--active-image" data-image-1="{{ image | img_url }}" data-image="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt }}" data-product-featured-image> -->
+          <img src="{{ image.src | img_url: '768x' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ image | img_url }}" data-image="{{ image | img_url: '768x' }}" alt="{{ image.alt }}" >
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <!-- If we need pagination -->
+  <!-- <div class="swiper-pagination"></div> -->
+</div>
+{% endcomment %}

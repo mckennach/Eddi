@@ -1,0 +1,110 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Featured Collection" section in the theme editor.
+
+  Theme Store required settings
+  - Collection
+
+  Theme Store optional settings
+  - Heading: title of the featured collection section
+{%- endcomment -%}
+<section class="featured_collection">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2 class="featured_collection--title" data-aos="fade-up">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+
+    {% if section.settings.desc != blank %}
+      <div class="featured_collection--desc" data-aos="fade-up">{{ section.settings.desc }}</div>
+    {% endif %}
+
+    {%- assign collection = collections[section.settings.collection] -%}
+    {% assign products = collection.products | sort: 'title' %}
+
+    <div class="cols-3">
+      {% for product in products limit: 6 %}
+        <div class="col featured_collection--item item-{{ forloop.index0 }}" data-aos="fade-up">
+          <a href="{{ product.url }}" class="">
+            <div class="featured_collection--hover-container">
+              {% if product.handle == 'sunday-drive' %}
+                <img src="{{ 'sunday-water.png' | asset_url }}" alt="">
+              {% elsif product.handle == 'park-day' %}
+                <img src="{{ 'park-water.png' | asset_url }}" alt="">
+              {% elsif product.handle == 'happy-hour' %}
+                <img src="{{ 'happy-water.png' | asset_url }}" alt="">
+              {% endif %}
+            </div>
+            {% if product.images[1] != blank %}
+            <div class="featured_collection--hover-img-container">
+                <!-- {% include 'responsive-image' with image: product.images[1], image_class: "css-class", wrapper_class: "featured_collection--item-image ", max_width: 300, max_height: 300 %} -->
+                <div class="featured_collection--item-image item-image-{{ forloop.index0 }} lazyload" data-bgset="{% include 'responsive-bg-image', image: product.images[1] %}"></div>
+                {% if product.metafields.custom_fields["hover_photo"] != blank %}
+                  <img src="{{ product.metafields.custom_fields["hover_photo"] }}" alt="" class="featured_collection--hover-image">
+                {% endif %}
+            </div>
+
+
+            {% endif %}
+          </a>
+          <div class="featured_collection--item-info">
+            <h4 class="featured_collection--item-title" data-aos="fade">{{ product.title | escape }}</h4>
+            {% if product.metafields.custom_fields["highlighted_notes"] != blank %}
+              <div class="featured_collection--item-desc {{ product.handle }}">
+                <ul class="featured_collection--ul d-flex flex-column align-items-center justify-content-center" data-aos="fade-up">
+                  {% for item in product.metafields.custom_fields["highlighted_notes"] %}
+                     {% if item["note"] != blank %}
+                      <li class="featured_collection--li" >{{ item["note"] }}{% if forloop.last %}{% else %}<span class="plus">+</span> {% endif %} </li>
+                     {% endif %}
+                   {% endfor %}
+                 </ul>
+              </div>
+            {% endif %}
+          </div>
+          {% if forloop.index0 == 1 %}
+            <div class="featured_collection--btn-container" data-aos="fade-up">
+              <a href="/products/happy-hour">
+                <button type="button" name="button">Shop 4-Packs</button>
+              </a>
+            </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+</section>
+
+
+
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured collection"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

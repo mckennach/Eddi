@@ -1,0 +1,76 @@
+<section class="icon_list">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <div class="icon_list--heading">
+        <h2 class="icon_list--title" data-aos="fade-up">{{ section.settings.title }}</h2>
+        {% if section.settings.desc != blank %}
+          <div class="icon_list--desc" data-aos="fade-up">{{ section.settings.desc }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="row mobile-hide">
+      {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'icon' %}
+              <div class="icon_list--item col d-flex flex-column">
+                {%- if block.settings.link -%}
+                  <a href="{{ block.settings.link }}" target="_blank">
+                {%- endif -%}
+                  <div class="icon_list--icon" data-aos="fade-up">
+                    {% include "icon", with icon: block.settings.icon %}
+                  </div>
+                  {% if block.settings.title != blank %}
+                    <div class="icon_list--icon-title" data-aos="fade-up">
+                      {{ block.settings.title  }}
+                    </div>
+                  {% endif %}
+                {%- if block.settings.link -%}
+                  </a>
+                {%- endif -%}
+              </div>
+          {% endcase  %}
+      {% endfor %}
+    </div>
+
+    <div class="icon-list-swiper desktop-hide">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+              {% case block.type %}
+                {% when 'icon' %}
+                  <div class="swiper-slide icon_list--item d-flex flex-column">
+                    {%- if block.settings.link -%}
+                      <a href="{{ block.settings.link }}" target="_blank">
+                    {%- endif -%}
+                      <div class="icon_list--icon">
+                        {% include "icon", with icon: block.settings.icon %}
+                      </div>
+                      {% if block.settings.title != blank %}
+                        <div class="icon_list--icon-title">
+                          {{ block.settings.title  }}
+                        </div>
+                      {% endif %}
+                    {%- if block.settings.link -%}
+                      </a>
+                    {%- endif -%}
+                  </div>
+              {% endcase  %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<script type="text/javascript">
+  var iconSwiper = new Swiper('.icon-list-swiper .swiper-container', {
+    // Default parameters
+    slidesPerView: 3,
+    spaceBetween: 10,
+
+
+  });
+</script>

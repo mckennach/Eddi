@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_accent }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {%- endif -%}
+
+  {%- capture seo_title -%}
+    {{ page_title }}
+    {%- if current_tags -%}
+      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%}
+    {%- if current_page != 1 -%}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {%- endif -%}
+    {%- assign escaped_page_title = page_title | escape -%}
+    {%- unless escaped_page_title contains shop.name -%}
+      &ndash; {{ shop.name }}
+    {%- endunless -%}
+  {%- endcapture -%}
+  <title>{{ seo_title | strip }}</title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  {% include 'social-meta-tags' %}
+  <!-- <link type="text/css" href="{{ 'hco_fonts.css' | asset_url }}" rel="stylesheet"> -->
+  {% include 'style-tags', layout: 'theme' %}
+  {% include 'css-variables' %}
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'jquery.selectric.min.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lt IE 9]><script src="{{ 'jquery.selectric.min.js' | asset_url }}"></script><![endif]-->
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'anime.min.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lt IE 9]><script src="{{ 'anime.min.js' | asset_url }}"></script><![endif]-->
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', '');
+
+    window.theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+
+
+    var pathname = window.location.pathname;
+    if(pathname == '/cart'){
+      window.location = '/?cart-open';
+    }
+
+    if(pathname.indexOf('collections') !== -1){
+      window.location = '/';
+    }
+
+
+
+  </script>
+
+  <!-- Only include one of the below in your theme. -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.1.0/cart.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.1.0/rivets-cart.min.js"></script>
+
+  {% include 'script-tags', layout: 'theme' %}
+
+
+    {%- if template == 'product.gift-card'   -%}
+    <script type="text/javascript" src="{{ 'template.product.js' | asset_url }}" defer="defer"></script>
+    {%- else -%}
+    <link rel="prefetch" href="{{ 'template.product.js' | asset_url }}" as="script">
+    {%- endif -%}
+
+    {%- if template == 'product.bundle'  -%}
+    <script type="text/javascript" src="{{ 'template.product.js' | asset_url }}" defer="defer"></script>
+    {%- else -%}
+    <link rel="prefetch" href="{{ 'template.product.js' | asset_url }}" as="script">
+    {%- endif -%}
+
+
+
+
+
+  {{ 'grouploop.min.js' | asset_url | script_tag }}
+
+
+  {{ content_for_header }}
+</head>
+
+
+
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} {%- if template == 'page' -%}default-page{%- endif -%}">
+
+  <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  {% section 'header' %}
+  {% section 'popup' %}
+  {% section 'account-popup' %}
+
+
+  <main role="main" id="MainContent">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'template-footer' %}
+  {%- section 'go-cart' -%}
+  <!-- Initialise Cart.js once the page has loaded -->
+  <script type="text/javascript">
+      jQuery(function() {
+          CartJS.init({{ cart | json }});
+      });
+
+      AOS.init({
+        duration: 800
+      });
+
+  </script>
+  <!-- Stamped - Begin Script-->
+  <script async type="text/javascript" data-api-key="" id="stamped-script-widget" src="https://cdn-stamped-io.azureedge.net/files/widget.min.js"></script>
+  <!-- Stamped - End Script -->
+</body>
+</html>

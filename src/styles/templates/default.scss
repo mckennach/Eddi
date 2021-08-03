@@ -1,0 +1,64 @@
+.default-page {
+  main {
+    background: $offWhite;
+    padding: 20rem 0 10rem;
+    text-align: center;
+    @include mobile-only {
+      padding: 10rem 0 5rem;
+    }
+
+    .default {
+      position: relative;
+    }
+
+    .container {
+      @include max-width(81.5);
+    }
+
+    h1 {
+      @include abhaya-reg-55;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      list-style: unset;
+    }
+
+    li {
+      display: list-item;
+
+      &:before {
+        position: absolute;
+        height: 5px;
+        width: 5px;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        background: $teal;
+        left: -13px;
+        top: 4px;
+      }
+    }
+
+    .watercolor-2 {
+      position: absolute;
+      top: 20rem;
+      left: -7rem;
+      @include mobile-only {
+        display: none;
+      }
+    }
+
+    .watercolor-1 {
+      position: absolute;
+      bottom: 2rem;
+      right: -7rem;
+      @include mobile-only {
+        display: none;
+      }
+    }
+  }
+
+
+
+}

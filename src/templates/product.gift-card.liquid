@@ -1,0 +1,70 @@
+<section class="product_container" data-section-id="{{ section.id }}" data-section-type="product" class="product-template">
+  <div class="container">
+    <div class="cols-2" style="">
+      <div class="">
+        {%- include 'product-detail-image' -%}
+        <div class="mobile-hide">
+          {%- include 'product-detail-accordions' -%}
+        </div>
+      </div>
+      <div class="">
+        <div class="product_detail_container">
+          <div class="product_detail_container--heading">
+            <h1 class="product_detail_container--title">{{ product.title }}</h1>
+            <p class="product_detail_container--excerpt">One dispenser and three 9.5oz hand soap refills</p>
+          </div>
+          <div class="product-content-price">
+
+
+            <script type="text/javascript">
+              console.log('here');
+              console.log( {{ current_variant | json }} )
+            </script>
+            <div class="hide">
+              {% include 'product-price' with product: product, current_variant: current_variant %}
+
+            </div>
+            <div class="d-flex">
+              {% for option in product.options_with_values %}
+                {% if option.name == 'Denominations' %}
+                  {% for value in option.values %}
+                    {% assign handleTxt = value | downcase %}
+                    {% assign handleTxt = handleTxt | replace: ' ', '-' %}
+                    {% assign handleTxt = handleTxt | replace: '&', 'and' %}
+                    {% assign handleTxt = handleTxt | replace: '$', '' %}
+                    <div class="denom-select {% if current_variant.option1 == value %} active {% endif %}" data-position="{{ option.position }}" data-handle="{{ handleTxt }}" data-product-id="{{product.id}}">
+                      {{ value }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endfor %}
+            </div>
+
+
+
+          </div>
+          <div class="product_detail_container--desc">
+            {{ product.description }}
+          </div>
+          {%- include 'product-detail-form' -%}
+
+          <!-- {% if product.handle == 'hand-soap-dispensers' %}
+            <div class="gradient_cta d-flex flex-column justify-content-center align-items-center">
+              <h3 class="gradient_cta--title">Need soap with that?</h3>
+              <a href="#" class="gradient_cta--link">Try our best-selling Starter Set</a>
+            </div>
+          {% endif %} -->
+
+          {% include "product-upsell" %}
+          {% include "product-icon-list" %}
+          {% include "product-secondary-description" %}
+          <div class="desktop-hide">
+            {%- include 'product-detail-accordions' -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "product-refill-content" %}

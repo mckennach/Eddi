@@ -1,0 +1,15 @@
+{% if product.metafields.custom_fields["full_with_image__text"] != blank %}
+  {% for item in product.metafields.custom_fields["full_with_image__text"] %}
+
+      {% if item["video_id"] != blank %}
+        <section  class="full_width_txt vimeo-wrapper">
+            <iframe src="https://player.vimeo.com/video/{{ item['video_id'] }}?muted=1&autoplay=1&loop=1&background=1&title=0&controls=0" frameborder="0" webkitallowfullscreen   mozallowfullscreen allowfullscreen></iframe>
+            {% if item["title_new"] != blank %}
+              <div class="container">
+                <h2 class="full_width_txt--title">{{ item["title_new"] }}</h2>
+              </div>
+            {% endif %}
+        </section>
+      {% endif %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,188 @@
+<section class="faq">
+  <div class="container">
+    {% if section.settings.title != blank %}
+    <h1 class="faq--title mobile-hide">{{ section.settings.title }}</h1>
+    <h1 class="faq--title desktop-hide">FAQs</h1>
+
+    {% endif %}
+
+    <div class="cols-1-2">
+      <div class="">
+        <ul>
+          <li>
+            <a href="#about" class="active faq-trigger" data-faq="about">About Eddi</a>
+          </li>
+          <li>
+            <a href="#shipping" class="faq-trigger" data-faq="shipping">Shipping & Returns</a>
+          </li>
+          <li>
+            <a href="#dispensers" class="faq-trigger" data-faq="dispensers">Dispensers</a>
+          </li>
+          <li>
+            <a href="#soap-refills" class="faq-trigger" data-faq="soap-refills">Soap Refills</a>
+          </li>
+          <li>
+            <a href="#orders" class="faq-trigger" data-faq="orders">Orders</a>
+          </li>
+          <li>
+            <a href="#subscriptions" class="faq-trigger" data-faq="subscriptions">Subscriptions</a>
+          </li>
+          <li>
+            <a href="#sustainability" class="faq-trigger" data-faq="sustainability">Sustainability</a>
+          </li>
+        </ul>
+      </div>
+      <div class="">
+        <article id="about" class="faq_article">
+          {% for block in section.blocks %}
+            {% case block.settings.category %}
+              {% when 'about' %}
+                {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+            {% endcase %}
+          {% endfor %}
+        </article>
+
+        <article id="shipping" class="faq_article hide">
+          {% for block in section.blocks %}
+            {% case block.settings.category %}
+              {% when 'shipping' %}
+                {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+
+            {% endcase %}
+          {% endfor %}
+        </article>
+
+        <article id="dispensers" class="faq_article hide">
+          {% for block in section.blocks %}
+            {% case block.settings.category %}
+              {% when 'dispensers' %}
+                {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+            {% endcase %}
+          {% endfor %}
+        </article>
+
+
+        <article id="soap-refills" class="faq_article hide">
+          {% for block in section.blocks %}
+            {% case block.settings.category %}
+              {% when 'soap-refills' %}
+                {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+
+            {% endcase %}
+          {% endfor %}
+        </article>
+
+
+        <article id="orders" class="faq_article hide">
+          {% for block in section.blocks %}
+            {% case block.settings.category %}
+              {% when 'orders' %}
+                {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+
+            {% endcase %}
+          {% endfor %}
+        </article>
+
+
+        <article id="subscriptions" class="faq_article hide">
+          {% for block in section.blocks %}
+            {% case block.settings.category %}
+              {% when 'subscriptions' %}
+                {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+            {% endcase %}
+          {% endfor %}
+        </article>
+
+        <article id="sustainability" class="faq_article hide">
+          {% for block in section.blocks %}
+            {% case block.settings.category %}
+              {% when 'sustainability' %}
+                {% include "accordion" with title: block.settings.title, desc: block.settings.desc %}
+            {% endcase %}
+          {% endfor %}
+        </article>
+
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="water-color-1">
+    <img src="{{ 'splash-blue.png' | asset_url }}" alt="">
+  </div>
+  <div class="water-color-2">
+    <img src="{{ 'sunday-water.png' | asset_url }}" alt="">
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "FAQs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "featured_articles",
+        "name": "Featured Articles",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+             "type": "select",
+             "id": "category",
+             "label": "Category",
+             "options": [
+               {
+                 "value": "about",
+                 "label": "About Eddi"
+               },
+               {
+                 "value": "shipping",
+                 "label": "Shipping & Returns"
+               },
+               {
+                 "value": "dispensers",
+                 "label": "Dispensers"
+               },
+               {
+                 "value": "soap-refills",
+                 "label": "Soap Refills"
+               },
+               {
+                 "value": "orders",
+                 "label": "Orders"
+               },
+               {
+                 "value": "subscriptions",
+                 "label": "Subscriptions"
+               },
+               {
+                 "value": "sustainability",
+                 "label": "Sustainability"
+               }
+             ],
+             "default": "about"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

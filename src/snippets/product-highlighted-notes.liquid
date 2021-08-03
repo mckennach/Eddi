@@ -1,0 +1,11 @@
+{% if product.metafields.custom_fields["highlighted_notes"] != blank %}
+  <div class="highlighted_notes {{ product.handle }}">
+    <ul class="highlighted_notes--ul d-flex align-items-center justify-content-center">
+      {% for item in product.metafields.custom_fields["highlighted_notes"] %}
+         {% if item["note"] != blank %}
+          <li class="highlighted_notes--li" data-aos="fade">{{ item["note"] }}</li>
+         {% endif %}
+       {% endfor %}
+     </ul>
+  </div>
+{% endif %}

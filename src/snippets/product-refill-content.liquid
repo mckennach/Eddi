@@ -1,0 +1,57 @@
+{% if product.metafields.custom_fields["refill_content"] != blank %}
+
+  <section class="refill_content">
+    {% for item in product.metafields.custom_fields["refill_content"] %}
+
+      {% if item["check_to_show_full_width_video"]  and item["full_width_video_id"] != blank %}
+      <section  class="vimeo-wrapper">
+          <iframe src="https://player.vimeo.com/video/{{ item['full_width_video_id'] }}?muted=1&autoplay=1&loop=1&background=1&title=0&controls=0" frameborder="0" webkitallowfullscreen   mozallowfullscreen allowfullscreen></iframe>
+      </section>
+      {% elsif item["full_width_image"] == 1 %}
+        {% if item["image"] != blank %}
+          <div class="lazyload refill_content--full-img" style="background-image: url( {{ item['image'] }} );">
+            <div class="container">
+              <div class="refill_content--txt-inner-container">
+                {% if item["title"] != blank %}
+                  <h2 class="refill_content--title">{{ item["title"] }}</h2>
+                {% endif %}
+                {% if item["description"] != blank %}
+                  <div class="refill_content--desc">{{ item["description"] }}</div>
+                {% endif %}
+                {% if item["link"] != blank %}
+                  <div class="refill_content--link button-chartreuse">
+                    {{ item["link"] }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="refill_content--underlay">
+
+          </div>
+        {% endif %}
+      {% else %}
+
+        <div class="cols-2">
+          <div class="lazyload refill_content--half-img" style="background-image: url( {{ item['image'] }} );"></div>
+          <div class="refill_content--txt-container d-flex justify-content-center align-items-center">
+            <div class="refill_content--txt-inner-container">
+              {% if item["title"] != blank %}
+                <h2 class="refill_content--title">{{ item["title"] }}</h2>
+              {% endif %}
+              {% if item["description"] != blank %}
+                <div class="refill_content--desc">{{ item["description"] }}</div>
+              {% endif %}
+              {% if item["link"] != blank %}
+                <div class="refill_content--link">
+                  {{ item["link"] }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+
+{% endif %}

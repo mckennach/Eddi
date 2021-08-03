@@ -1,0 +1,175 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+
+
+<script type="text/javascript">
+  console.log( {{ current_variant | json }} )
+</script>
+
+{%- capture form_id -%}add-to-cart-{{ product.handle }}-{{ collection.handle }}-{{ section.id }}{%- endcapture -%}
+
+
+
+{% form 'product', product, id: form_id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+  <input type="hidden" name="id" value="{{ current_variant.id }}">
+  <div class="variant-container d-flex " style="display: none;">
+    {% if product.has_only_default_variant %}
+      {% assign option = product.options_with_values[0] %}
+      {% assign value = option.values[0] %}
+
+      <!-- !!Removed this -->
+      <!-- id="Option{{ option.position }}-{{ value }}" -->
+
+      <input type="hidden"  name="options[{{ option.name }}]" value="{{ value }}" {% if option.selected_value == value %} checked{% endif %}>
+    {% else %}
+      {% for option in product.options_with_values %}
+        {% include 'swatch' with option.name as swatch %}
+        <div class="js hide">
+
+          {% for value in option.values %}
+            {% assign handleTxt = value | downcase %}
+            {% assign handleTxt = handleTxt | replace: ' ', '-' %}
+            {% assign handleTxt = handleTxt | replace: '&', 'and' %}
+            {% assign handleTxt = handleTxt | replace: '$', '' %}
+            <input type="radio" id="Option{{ option.position }}-{{ handleTxt }}-{{product.id}}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+            <label for="Option{{ option.position }}-{{ handleTxt }}-{{product.id}}">{{ value }}</label>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+
+
+
+
+
+  <noscript>
+    <select name="id">
+      {% for variant in product.variants %}
+        <option
+          {% if variant == current_variant %}selected="selected"{% endif %}
+          {% unless variant.available %}disabled="disabled"{% endunless %}
+          value="{{ variant.id }}">
+            {{ variant.title }}
+        </option>
+      {% endfor %}
+    </select>
+  </noscript>
+
+
+  <!-- <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+  <input type="number" id="Quantity" name="quantity" value="1" min="1"> -->
+  {% include "product-subscription-selector" %}
+
+  <div class="controls row">
+    <div class="col-4">
+      <div class="qty">
+        <!-- <input type="number" id="Quantity" name="quantity" value="1" min="1"> -->
+        <div class="number-input-wrapper d-flex justify-content-center d-flex justify-content-between align-items-center">
+          <input type="number" class="quantity" name="quantity" value="1" min="1">
+          <a href="#" class="subtract-one" data-product-id="{{ product.variants.first.id }}" data-operation="subtract">
+            {% include "icon-minus" %}
+          </a>
+          <span class="product-detail-number-input-label">1</span>
+          <a href="#" class="add-one" data-product-id="{{ product.variants.first.id }}" data-operation="add">
+            {% include "icon-plus" %}
+          </a>
+        </div>
+      </div>
+
+      <div class="product-detail-number-input number-input-wrapper hide">
+        <span class="product-detail-number-input-label">Qty: </span>
+        <input class="product-detail-number-input-number js-go-cart-quantity"  name="quantity" type="number" value="1" disabled="">
+        <span class="product-detail-number-input-button js-go-cart-quantity-plus subtract-one">+</span>
+        <span class="product-detail-number-input-button js-go-cart-quantity-minus add-one">-</span>
+      </div>
+    </div>
+    <div class="col-8">
+
+
+      {%- if product.selling_plan_groups.size > 0 -%}
+        {% assign isSub = 'true' %}
+      {%-  else -%}
+        {% assign isSub = 'false' %}
+      {%- endif -%}
+
+      <button
+        type="submit"
+        name="add"
+        data-submit-button
+        data-sub="{{ isSub }}"
+        data-id="{{ current_variant.id }}"
+        class="{% if template == 'product.bundle' %} custom-add-to-cart  {% else %} custom-add-to-cart {% endif %}  button-transparent"
+        {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+          <span data-submit-button-text>
+            {% if current_variant.available %}
+              {% if product.title contains 'Gift Card' %}
+                Purchase
+              {% else %}
+                {{ 'products.product.add_to_cart' | t }}
+
+              {% endif %}
+            {% else %}
+              {{ 'products.product.sold_out' | t }}
+            {% endif %}
+          </span>
+      </button>
+    </div>
+
+  </div>
+  {% unless product.title contains 'Gift Card' %}
+  {% if settings.shipping_note != blank %}
+    <div class="shipping-note">{{ settings.shipping_note }}</div>
+  {% endif %}
+  {% endunless %}
+
+
+{% endform %}
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+/* ---------------------------------------------
+Number Input Wrapper
+------------------------------------------------ */
+
+// $('.number-input-wrapper').find('input[type="number"]').hide();
+
+$('.number-input-wrapper .add-one, .number-input-wrapper .subtract-one').on('click', function(e) {
+  e.preventDefault();
+
+  $('#addToCartBtn').removeClass('inactive');
+  var $clickedButton = $(this);
+  var $numberInputWrapper = $clickedButton.closest('.number-input-wrapper');
+  var $numberInput = $numberInputWrapper.find('input');
+  var $placeholder = $numberInputWrapper.find('.product-detail-number-input-label');
+  var operation = $clickedButton.data('operation');
+
+  var currentInputValue = parseInt($numberInput.val(), 10);
+
+  if (operation == 'add') {
+    $('.subtract-one').show();
+  }
+
+  if (operation == 'add' || operation == 'subtract' && currentInputValue > 0) {
+    var newValue = operation == 'add' ? currentInputValue + 1 : currentInputValue - 1;
+    $numberInput.val(newValue);
+    $placeholder.html(newValue);
+    if (newValue == 0) {
+      $('.subtract-one').hide();
+      $('#addToCartBtn').addClass('inactive');
+    }
+  }
+
+
+});
+
+});
+
+
+$('.variant-container').ready(function() {
+    $('.variant-container').fadeIn();
+});
+
+</script>

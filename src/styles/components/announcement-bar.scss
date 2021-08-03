@@ -1,0 +1,22 @@
+.announcement_bar {
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  z-index: 101;
+  p, a {
+    margin: 0;
+    position: relative;
+    // top: 5px;
+    color: $white;
+    white-space: nowrap;
+    @include noto-reg-16;
+    font-size: 16px;
+    @include mobile-only {
+      font-size: 9px;
+      line-height: 9px;
+    }
+
+
+  }
+
+}

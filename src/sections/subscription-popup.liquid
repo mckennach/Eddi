@@ -1,0 +1,121 @@
+<div class="subscription-popup">
+  <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+    <div class="subscription-popup__modal">
+      <div class="close-modal-sub">
+        {% include "icon-close" %}
+      </div>
+      <div class="subscription-popup__inner-modal">
+        <div class="subscription-popup__heading">
+          {% include "icon-time" %}
+          {%- if section.settings.title -%}
+            <h3 class="subscription-popup__title">{{ section.settings.title }}</h3>
+          {%- endif -%}
+          {%- if section.settings.desc -%}
+            <div class="subscription-popup__desc">{{ section.settings.desc }}</div>
+          {%- endif -%}
+        </div>
+
+        <div class="subscription-popup__selection-container">
+          <div class="subscription-popup__selector d-flex align-items-center justify-content-center">
+            I am
+            <select id="subscription-popup__select" class="subscription-popup__select" name="">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'frequency' %}
+                    <option value="{{forloop.index0}}">{{ block.settings.title }}</option>
+                {% endcase %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="subscription-popup__frequency-container">
+            <h5 class="subscription-popup__delivery-every">{{ section.settings.delivery_every }}</h5>
+            <div class="subscription-popup__frequencys">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'frequency' %}
+                    <div class="subscription-popup__frequency frequency-{{ forloop.index0 }}" {% if forloop.index0 > 0 %}style="display: none;"{% endif %} >
+                      {{ block.settings.frequency }}
+                    </div>
+                {% endcase %}
+              {% endfor %}
+            </div>
+          </div>
+
+
+        </div>
+
+
+        {%- if section.settings.note -%}
+          <div class="subscription-popup__note mobile-hide">
+            {{ section.settings.note }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.mobile_note -%}
+          <div class="subscription-popup__note desktop-hide">
+            {{ section.settings.mobile_note }}
+          </div>
+        {%- endif -%}
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Subscription Popuop",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Our Advice to Get You Started"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "richtext",
+        "id": "note",
+        "label": "Note"
+      },
+      {
+        "type": "richtext",
+        "id": "mobile_note",
+        "label": "Mobile Note"
+      },
+      {
+        "type": "text",
+        "id": "delivery_every",
+        "label": "Delivery Every",
+        "default": "Delivery Every"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "frequency",
+        "name": "Frequency",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "frequency",
+            "label": "Frequency"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

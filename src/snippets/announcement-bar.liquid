@@ -1,0 +1,23 @@
+{%- if section.settings.announcement_bar_enabled -%}
+  {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
+    <div class="announcement_bar" style="background-color: {{ section.settings.announcement_bg_color }};">
+      {%- if section.settings.announcement_bar_link != blank -%}
+        <a clas=="accouncement_bar--txt" href="{{ section.settings.announcement_bar_link }}" style="color: {{ section.settings.announcement_txt_color }};">
+          <div class="mobile-hide">
+            {{ section.settings.richtext }}
+          </div>
+          <div class="desktop-hide">
+            {{ section.settings.mobile_richtext }}
+          </div>
+        </a>
+      {%- else -%}
+        <div class="accouncement_bar--txt mobile-hide" style="color: {{ section.settings.announcement_txt_color }};">{{ section.settings.richtext }}</div>
+        <div class="accouncement_bar--txt desktop-hide" style="color: {{ section.settings.announcement_txt_color }};">{{ section.settings.mobile_richtext }}</div>
+      {%- endif -%}
+    </div>
+    <script type="text/javascript">
+      $('body').addClass('announce-enabled')
+    </script>
+
+  {%- endif -%}
+{%- endif -%}

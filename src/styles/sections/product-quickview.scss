@@ -1,0 +1,109 @@
+.product_quickview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.25);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--img {
+    background-size: cover;
+    background-position: center;
+  }
+
+  &--title {
+    @include abhaya-reg-40;
+    margin-bottom: 20px;
+  }
+
+  &--desc, &--desc p {
+    @include gotham-book-12;
+  }
+
+  &--modal {
+    background: $offWhite;
+    @include max-width(114.5);
+    @media (max-width: 1200px) {
+      width: 90%;
+    }
+
+    transition: all .2s;
+  }
+
+  &--txt-container {
+    position: relative;
+    padding: 2.5rem 5rem;
+    @include mobile-only {
+      padding: 2.5rem 2rem;
+    }
+  }
+
+  &--close-modal {
+    /* Plus / Minus icon */
+    span {
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+    }
+    span::after,
+    span::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      border-bottom: 2px solid #BFBFBF;
+    }
+    span::before {
+      transform: rotate(-45deg);
+      transition: all .2s;
+    }
+
+    span::after {
+      transform: rotate(45deg);
+      transition: all .2s;
+    }
+  }
+
+
+  &--icon img {
+    @include max-width(10.5);
+  }
+
+  &--link-container {
+    padding-top: 15px;
+  }
+
+  &--link {
+    a {
+      @include noto-reg-12;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .product_notes--notes {
+    margin-bottom: 15px;
+  }
+
+  .product_notes--note-li  {
+    @include gotham-book-12;
+  }
+
+
+
+  .cols-2 {
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+  }
+
+}

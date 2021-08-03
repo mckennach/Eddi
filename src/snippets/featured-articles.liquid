@@ -1,0 +1,80 @@
+<section class="featured_articles">
+  <!-- Slider main container -->
+  <div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'featured_articles' %}
+
+              {% assign article = articles[block.settings.featured_article] %}
+              {% assign url = article.url %}
+              {% assign articleHandle = article.title | replace: ' ', '-' %}
+              {% assign articleHandle = articleHandle | downcase %}
+              {% assign blogTitle = url | replace: '/blogs/', '' %}
+              {% assign blogTitle = blogTitle | replace: '/', '' %}
+              {% assign blogTitle = blogTitle | replace: articleHandle, '' %}
+
+              <!-- Slides -->
+              <div class="swiper-slide">
+                <div class="row">
+                  <div class="col-md featured_articles--txt-container">
+                    {% if blogTitle != blank %}
+                      <h5 class="featured_articles--blog-title">{{ blogTitle }}</h5>
+                    {% endif %}
+                    {% if article.title != blank %}
+                      <h3 class="featured_articles--article-title">{{ article.title }}</h3>
+                    {% endif %}
+                    {% if article.excerpt != blank %}
+                      <div class="featured_articles--excerpt">
+                        {{ article.excerpt }}
+                      </div>
+                    {% endif %}
+
+                    <div class="featured_articles--btn">
+                      <a href="{{ article.url }}">
+                        <button type="button" name="button">Read More</button>
+                      </a>
+                    </div>
+
+                  </div>
+                  {% if article.image %}
+                    <div class="lazyload col-md" data-bgset="{% include 'responsive-bg-image', image: article.image %}"></div>
+                  {% endif %}
+                </div>
+              </div>
+        {% endcase %}
+      {% endfor %}
+
+
+      ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+</section>
+
+
+<script type="text/javascript">
+  var swiper = new Swiper('.featured_articles .swiper-container', {
+    // Optional parameters
+    loop: true,
+
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+
+  });
+</script>

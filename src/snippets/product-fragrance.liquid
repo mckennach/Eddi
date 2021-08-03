@@ -1,0 +1,60 @@
+{% if product.metafields.custom_fields["fragrance_section"] != blank %}
+  <section class="fragrance">
+    <div class="container">
+        {% for item in product.metafields.custom_fields["fragrance_section"] %}
+          <div class="cols-2">
+            <div class="fragrance--txt-container">
+              {% if item["title_new"] != blank %}
+                <h2 class="fragrance--title {{ product.handle  }}" data-aos="fade">{{ item["title_new"] }}</h2>
+              {% endif %}
+              {% if item["description"] != blank %}
+                <div class="fragrance--desc" data-aos="fade">{{ item["description"] }}</div>
+              {% endif %}
+              {% if item["fragrance"] != blank %}
+                <div class="">
+                  {% for fragrance_item in item["fragrance"] %}
+                    <div class="row fragrance--fragrances">
+                      {% if fragrance_item["range"] != blank %}
+                        <div class="col-10">
+                          <div name="{{ fragrance_item['title'] }}" class=" fragrance--progress-container">
+                            <div class="fragrance--progress {{ product.handle }}" style="width: {{ fragrance_item['range'] }}0%;"></div>
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if fragrance_item["title"] != blank %}
+                        <div class="col-2">
+                          <label class="fragrance--label" for="{{ fragrance_item['title'] }}">{{ fragrance_item["title"] }}</label>
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
+
+            <div class="fragrance--img-container">
+              {% if item["image"] != blank %}
+                <div class="fragrance--image" data-aos="fade">
+                  <img src='{{ item["image"] }}' alt="">
+                </div>
+              {% endif %}
+              {% if item["illustration"] != blank %}
+                <div class="fragrance--illo-1" data-aos="fade">
+                  <img src='{{ item["illustration"] }}' alt="">
+                </div>
+              {% endif %}
+              {% if product.metafields.custom_fields["set_icon_hover_state"] != blank %}
+                <div class="fragrance--icon" style="" data-aos="fade">
+                  <img src="{{ product.metafields.custom_fields["set_icon_hover_state"] }}" alt="{{ product.title }}">
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+        {% endfor %}
+
+
+    </div>
+  </section>
+
+{% endif %}

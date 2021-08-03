@@ -1,0 +1,206 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(31, 24, 8, .2);
+  z-index: 1050;
+  display: none;
+
+  .close-modal-popup {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+
+    svg path {
+      fill: white;
+    }
+  }
+
+  &--container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  &--inner-container {
+    background: rgb(235,238,255);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(235,238,255,1)), to(rgba(252,228,219,1)));
+    background: -webkit-linear-gradient(top, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+    background: -moz-linear-gradient(top, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+    background: -o-linear-gradient(top, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+    background: linear-gradient(180deg, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+    position: absolute;
+    width: 545px;
+    height: 545px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    // padding: 6rem 10rem 6rem 6rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    @media (max-width: 550px) {
+      width: 320px;
+      height: 320px;
+    }
+  }
+
+  &--title {
+    @include abhaya-reg-25;
+    font-size: 70px;
+    line-height: 83px;
+    line-height: 47px;
+    @include mobile-only {
+      font-size: 37px;
+      line-height: 30px;
+    }
+  }
+
+  &--subtitle {
+    @include noto-reg-20;
+    margin-bottom: 20px;
+  }
+
+  &--desc p {
+    @include abhaya-reg-25 @include mobile-only {
+      font-size: 15px;
+      line-height: 15px;
+    }
+  }
+
+  &--txt-container {
+    max-width: 340px;
+    @include mobile-only {
+        max-width: 200px;
+    }
+  }
+
+  .hand-svg svg {
+    position: absolute;
+    left: -12rem;
+    bottom: -6rem;
+    @include mobile-only {
+      display: none;
+    };
+  }
+
+  form {
+    position: relative;
+  }
+
+  input {
+    background: white;
+    border: 1px solid #085454;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+    padding: 15px 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    color: $teal;
+    outline: none;
+
+    &:hover, &:active, &:focus {
+      background: unset;
+      outline: none;
+
+    }
+    ::-moz-placeholder {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+    }
+
+    :-ms-input-placeholder {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+    }
+
+    ::-webkit-input-placeholder {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+    }
+
+    :-moz-placeholder {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+    }
+
+    ::-ms-input-placeholder {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+    }
+
+    ::placeholder {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+    }
+    @include mobile-only {
+      padding: 10px;
+      font-size: 9px;
+      line-height: 13px;
+      margin-bottom: 5px;
+    }
+  }
+
+  button {
+    width: 100%;
+
+  }
+
+  .klaviyo_messages {
+    max-width: 340px;
+    margin: auto;
+  }
+
+  .alert-danger,
+  .alert-success {
+    background-color: unset !important;
+    border-color: unset !important;
+    border: none !important;
+    text-align: center;
+    letter-spacing: 0;
+    color: #939393;
+    /* margin-top: 5px; */
+    font-size: 10px;
+
+    @include mobile-only {
+      font-size: 10px;
+      line-height: 11px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<section class="material_heading">
+  <div class="container">
+    {% if section.settings.title != blank  %}
+      <h1 class="material_heading--title">{{ section.settings.title }}</h1>
+    {% endif %}
+    {% if section.settings.desc != blank  %}
+      <div class="material_heading--desc">{{ section.settings.desc }}</div>
+    {% endif %}
+  </div>
+  <div class="material_heading--line-break">
+
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Materials Heading",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,85 @@
+{%- if section.settings.show_section -%}
+<section class="press">
+  <div class="container">
+    <h4 class="press--title">{{ section.settings.title }}</h4>
+
+    <!-- Slider main container -->
+    <div class="swiper-container">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'press_item' %}
+              <div class="swiper-slide">
+                {% if block.settings.quote != blank %}
+                  <blockquote class="press--quote">{{ block.settings.quote }}</blockquote>
+                {% endif %}
+                {% if block.settings.image != blank %}
+                  {% include 'responsive-image' with image: block.settings.image, image_class: "press--img", wrapper_class: "press--container", max_width: 700, max_height: 800 %}
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+      <!-- If we need navigation buttons -->
+      <div class="swiper-button-prev">
+        {% include "icon-arrow-left" %}
+      </div>
+      <div class="swiper-button-next">
+        {% include "icon-arrow-right" %}
+      </div>
+
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
+
+    </div>
+
+  </div>
+</section>
+
+
+{%- endif -%}
+
+
+{% schema %}
+  {
+    "name": "In The Press",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_section",
+        "label": "Show Section",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "press_item",
+        "name": "Press Item",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "quote",
+            "label": "Quote"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "info": "use PNGs",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

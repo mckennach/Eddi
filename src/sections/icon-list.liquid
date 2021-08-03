@@ -1,0 +1,63 @@
+{% include "icon-list" %}
+
+
+{% schema %}
+  {
+    "name": "Icon List",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+             "type": "select",
+             "id": "icon",
+             "label": "Icon",
+             "options": [
+               {
+                 "value": "no-plastic",
+                 "label": "No Plastic"
+               },
+               {
+                 "value": "design",
+                 "label": "Design"
+               },
+               {
+                 "value": "lux_scents",
+                 "label": "Luxury Scents"
+               },
+               {
+                 "value": "refills",
+                 "label": "Refills"
+               },
+               {
+                 "value": "plant-based",
+                 "label": "Plant-Based"
+               }
+             ],
+             "default": "no-plastic",
+             "info": "Using this method so we can use SVGs"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Icon List",
+        "category": "Dynamic Blocks"
+      }
+    ]
+  }
+{% endschema %}

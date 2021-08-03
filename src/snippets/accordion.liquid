@@ -1,0 +1,11 @@
+<div class="accordion">
+  {% if title != blank %}
+    <h3 class="accordion--title">
+      <div class="accordion--max">{{ title }}</div> <span></span></h3>
+  {% endif %}
+  {% if desc != blank %}
+    <div class="accordion--desc">
+      {{ desc }}
+    </div>
+  {% endif %}
+</div>

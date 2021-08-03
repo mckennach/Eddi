@@ -1,0 +1,17 @@
+.template-404 {
+  main {
+    background: $offWhite;
+    padding: 20rem 0 10rem;
+    height: 50vh;
+    min-height: 500px;
+    position: relative;
+    text-align: center;
+    @include mobile-only {
+      padding: 10rem 0 5rem;
+    }
+  }
+
+  h1 {
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,57 @@
+{% include "icon-list" %}
+{% schema %}
+  {
+    "name": "Questions?",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+             "type": "select",
+             "id": "icon",
+             "label": "Icon",
+             "options": [
+               {
+                 "value": "chat",
+                 "label": "Chat"
+               },
+               {
+                 "value": "email",
+                 "label": "Email"
+               },
+               {
+                 "value": "call",
+                 "label": "Call"
+               }
+             ],
+             "default": "chat",
+             "info": "Using this method so we can use SVGs"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

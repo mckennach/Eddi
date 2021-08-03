@@ -1,0 +1,51 @@
+
+
+{% if link.handle == 'shop' %}
+  <div class="header_main--dropdown shop">
+    <div class="">
+      <ul class="shop_dropdown d-flex justify-content-between align-items-center">
+        <li class="shop_dropdown--title d-flex justify-content-center align-items-center">
+          Shop
+        </li>
+        {% for childlink in link.links %}
+
+          {% assign image1 = '' %}
+          {%- if childlink.title contains 'Starter Set' -%}
+            {% assign image1 = settings.starter_set_img | img_url: 'master' %}
+          {%- elsif childlink.title contains 'Dispenser' -%}
+            {% assign image1 = settings.dispenser_img | img_url: 'master' %}
+          {%- elsif childlink.title contains 'Bundle' -%}
+            {% assign image1 = settings.bundle_img | img_url: 'master' %}
+          {%- elsif childlink.url contains 'gift-card' -%}
+            {% assign image1 = settings.gift_card_img | img_url: 'master' %}
+          {%- endif -%}
+
+
+
+          <li class="shop_dropdown--li">
+            <a href="{{ childlink.url }}">
+              <div class="shop_dropdown--image">
+                {%- if childlink.title contains 'Starter Set' -%}
+                  {% include "icon-best-value" %}
+                {%- endif -%}
+                <img src="{{ image1 }}" alt="{{ childlink.title }}" style="max-width: 250px;">
+              </div>
+              <!-- {% include 'responsive-image' with image: dropdownProduct.featured_image, image_class: "css-class", wrapper_class: "wrapper-css-class", max_width: 230, max_height: 250 %} -->
+              <figcaption>{{ childlink.title }}</figcaption>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% else %}
+  <ul class="header_main--dropdown default-dropdown about">
+    {% for childlink in link.links %}
+      <li>
+        <a href="{{ childlink.url }}">
+          {{ childlink.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif  %}

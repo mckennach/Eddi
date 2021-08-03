@@ -1,0 +1,28 @@
+
+{% include "featured-articles" %}
+{% include "blog-posts" %}
+
+{% schema %}
+  {
+    "name": "Featured Articles",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Featured Articles"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "featured_articles",
+        "name": "Featured Articles",
+        "settings": [
+          {
+             "type": "article",
+             "id": "featured_article",
+             "label": "Featured Article"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

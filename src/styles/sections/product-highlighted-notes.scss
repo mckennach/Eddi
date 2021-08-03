@@ -1,0 +1,13 @@
+.highlighted_notes {
+  margin: 10px 0;
+
+  &--ul {
+    padding: 0;
+  }
+
+  &--li {
+    margin: 0 5px;
+    @include noto-reg-12;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,77 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: $font-body;
+  font-weight: $font-body-weight;
+  font-style: $font-body-style;
+  font-size: 1.6rem;
+  color: $teal;
+}
+
+h1,
+h2,
+h3
+ {
+  font-family: $font-heading;
+}
+
+h4,
+h5,
+h6 {
+  font-family: $font-body;
+}
+
+h2 {
+  @include abhaya-reg-50;
+}
+
+
+body,
+input,
+textarea,
+button,
+select {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+}
+
+
+
+h1 {
+  @include abhaya-reg-90;
+}
+
+
+a {
+  text-decoration: none;
+  &:hover {
+    color: unset;
+  }
+}
+
+a:focus {
+  color: inherit;
+}
+
+p {
+  color: $teal;
+  @include gotham-book-18;
+}
+
+
+.park-day {
+  color: $park;
+}
+
+.sunday-drive {
+  color: $sunday;
+}
+
+.happy-hour {
+  color: $happyHour;
+}

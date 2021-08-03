@@ -1,0 +1,69 @@
+.product_icon_list {
+
+  padding: 2.8rem 0 2.8rem;
+  text-align: center;
+
+  &--title {
+    margin-bottom: 5rem;
+  }
+
+  &--icon {
+    position: relative;
+
+    height: 60px;
+    width: 60px;
+    margin: 0 auto 20px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      top: 0;
+      -webkit-transition: all .7s;
+      -o-transition: all .7s;
+      -moz-transition: all .7s;
+      transition: all .7s;
+    }
+    @include mobile-only {
+      width: 50px;
+      height: 50px;
+    }
+    svg {
+      // max-width: 6.5rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover {
+      img {
+        top: -2rem;
+        -webkit-transition: all .7s;
+        -o-transition: all .7s;
+        -moz-transition: all .7s;
+        transition: all .7s;
+
+        @include mobile-only {
+          top: -1rem;
+          -webkit-transition: all .7s;
+          -o-transition: all .7s;
+          -moz-transition: all .7s;
+          transition: all .7s;
+
+
+        }
+      }
+
+    }
+  }
+
+
+
+  &--icon-label {
+    margin-top: 5px;
+    @include noto-reg-15;
+    @include max-width(8.8);
+    line-height: 21px;
+    max-width: 129px;
+  }
+
+}

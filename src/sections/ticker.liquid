@@ -1,0 +1,50 @@
+<section>
+  <div class="ticker">
+    <div class="item-wrap">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'txt' %}
+            <div class="item"><p>{{ block.settings.title }}</p></div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Text Ticker",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Text Ticker"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background Color",
+        "default": "#CBBCA8"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "txt",
+        "name": "Text",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Text Ticker",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

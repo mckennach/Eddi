@@ -1,0 +1,184 @@
+.icon_list {
+  text-align: center;
+  padding: 5rem 0;
+  @include mobile-only {
+    padding: 2.5rem 0;
+  }
+
+  .container {
+    max-width: 1149px;
+  }
+
+  &--heading {
+    margin-bottom: 5rem;
+    @include mobile-only {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &--title {
+    @include abhaya-reg-50;
+    color: $teal;
+    // margin-bottom: 6rem;
+    margin-bottom: 20px;
+  }
+
+  &--desc,
+  &--desc p {
+    @include gotham-book-15;
+  }
+
+  &--item {
+    @include max-width(20);
+
+
+    .animate path {
+      // opacity: 0;
+  //     -webkit-animation-name: animateOp;
+  //        -moz-animation-name: animateOp;
+  //          -o-animation-name: animateOp;
+  //             animation-name: animateOp;
+  // -webkit-animation-duration: 3s;
+  //    -moz-animation-duration: 3s;
+  //      -o-animation-duration: 3s;
+  //         animation-duration: 3s;
+  //         -webkit-animation-iteration-count: infinite;
+  //            -moz-animation-iteration-count: infinite;
+  //              -o-animation-iteration-count: infinite;
+  //                 animation-iteration-count: infinite;
+  //
+  //     -webkit-transition: all 3s;
+  //
+  //     -o-transition: all 3s;
+  //
+  //     -moz-transition: all 3s;
+  //
+  //     transition: all 3s;
+    }
+
+  // &:hover {
+//   .animate path {
+//     opacity: 1;
+//     -webkit-transition: all .5s;
+//     -o-transition: all .5s;
+//     -moz-transition: all .5s;
+//     transition: all .5s;
+//   }
+// }
+
+    &:hover {
+      .icon_list--icon {
+        position: relative;
+        top: -1.5rem;
+        -webkit-transition: all 0.7s;
+        -o-transition: all 0.7s;
+        -moz-transition: all 0.7s;
+        transition: all 0.7s;
+        @include mobile-only {
+          top: -1rem;
+        }
+      }
+    }
+  }
+
+  &--icon-title,
+  &--icon-title p {
+    @include noto-reg-18;
+    @include letter-spacing(10);
+    line-height: 25px;
+    @include max-width(14);
+    margin-bottom: 0;
+    @include mobile-only {
+      font-size: 11px;
+      line-height: 15px;
+    }
+  }
+
+  &--icon {
+    height: 85px;
+    width: 85px;
+    margin: 0 auto 2.5rem;
+    position: relative;
+    top: 0;
+    -webkit-transition: all 0.7s;
+    -o-transition: all 0.7s;
+    -moz-transition: all 0.7s;
+    transition: all 0.7s;
+    @include mobile-only {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 1.5rem;
+
+    }
+
+    svg {
+      // max-width: 6.5rem;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .swiper-container {
+    overflow: visible;
+  }
+}
+
+#contact-us,
+#how-it-works {
+  .icon_list {
+    @include max-width(87.2);
+    padding: 10rem 0;
+  }
+}
+
+#contact-us .icon_list {
+  background: white;
+}
+
+.foating-stars {
+  position: absolute;
+  top: -3rem;
+  right: 4rem;
+  -webkit-transform: translate(67px, 0);
+  -moz-transform: translate(67px, 0);
+  -ms-transform: translate(67px, 0);
+  -o-transform: translate(67px, 0);
+  transform: translate(67px, 0);
+  @include mobile-only {
+    top: -3rem;
+    right: 3rem;
+    -webkit-transform: translate(36px, 10px);
+    -moz-transform: translate(36px, 10px);
+    -ms-transform: translate(36px, 10px);
+    -o-transform: translate(36px, 10px);
+    transform: translate(36px, 10px);
+  }
+}
+
+@-webkit-keyframes animateOp {
+  0%   {opacity: 0;}
+  25%  {opacity: 1;}
+  50%  {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-moz-keyframes animateOp {
+  0%   {opacity: 0;}
+  25%  {opacity: 1;}
+  50%  {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@-o-keyframes animateOp {
+  0%   {opacity: 0;}
+  25%  {opacity: 1;}
+  50%  {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes animateOp {
+  0%   {opacity: 0;}
+  25%  {opacity: 1;}
+  50%  {opacity: 0;}
+  100% {opacity: 1;}
+}

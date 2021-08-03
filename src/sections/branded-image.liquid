@@ -1,0 +1,49 @@
+
+{% if section.settings.video_url != blank %}
+  <section  class="vimeo-wrapper">
+    {% if section.settings.video_url.type == 'vimeo' %}
+      <iframe src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?muted=1&autoplay=1&loop=1&background=1&title=0&controls=0" frameborder="0" webkitallowfullscreen   mozallowfullscreen allowfullscreen></iframe>
+    {% else %}
+      <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}" width="640" height="360" frameborder="0"></iframe>
+    {% endif %}
+  </section>
+{% else %}
+  <section class="branded_content">
+    <div class="lazyload branded_content--bg-img" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+  </section>
+
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Branded Image or Video",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Branded Image or Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "id": "video_url",
+        "type": "video_url",
+        "label": "Video URL",
+        "accept": ["youtube", "vimeo"],
+        "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "info": "text",
+        "placeholder": "text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Branded Image or Video",
+        "category": "Branded Content"
+      }
+    ]
+  }
+{% endschema %}

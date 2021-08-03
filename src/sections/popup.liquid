@@ -1,0 +1,146 @@
+{% if section.settings.enabled %}
+
+  <div class="popup" tabindex="-1" data-delay="{{ section.settings.delay | times: 1000 }}" data-remember="{{ section.settings.dismiss }}">
+    <div class="popup--container">
+      <div class="popup--inner-container">
+        <div class="close-modal-popup">
+          {% include "icon-close" %}
+        </div>
+        <div class="">
+
+          <div class="">
+            <div class="popup--txt-container">
+              <h2 class="popup--title">{{ section.settings.heading }}</h2>
+              <div class="popup--subtitle">{{ section.settings.text | strip_html }}</div>
+              <div class="popup--desc">{{ section.settings.desc }}</div>
+              <form id="klaviyo_popup-1" class="klaviyo_gdpr_embed_{{ section.settings.list_id }}" action="//manage.kmail-lists.com/subscriptions/subscribe" data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+                <input type="hidden" name="g" value="{{ section.settings.list_id }}">
+                <input type="hidden" name="$fields" value="$consent">
+                <input type="hidden" name="$list_fields" value="$consent">
+                <input type="hidden" name="$consent" value="email">
+
+                <div class="form-actual ">
+                  <div class="">
+                    <div class="input-container">
+                      <input type="email" value="" name="email" id="k_id_email" placeholder="Email Address" />
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <button type="submit" class="popup-btn">
+                      Sign Me Up!
+                    </button>
+                  </div>
+                  <div class="klaviyo_messages">
+                    <div class="success_message alert alert-success" style="display:none;"></div>
+                    <div class="error_message alert alert-danger" style="display:none;"></div>
+                  </div>
+
+                </div>
+              </form>
+              <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+              <script type="text/javascript">
+                KlaviyoSubscribe.attachToForms('#klaviyo_popup-1', {
+                  hide_form_on_success: true,
+                  success_message: '{{ section.settings.success | escape }}',
+                  success: function($form) {
+                    Cookies.set('popup_display', 'n', {
+                      expires: parseInt($('.popup').attr('data-remember'))
+                    });
+                  },
+                });
+              </script>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Newsletter Popup",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enabled",
+        "label": "Enabled",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "list_id",
+        "label": "List ID",
+        "info": "[Find your list ID](https://help.klaviyo.com/hc/en-us/articles/115005078647-Find-a-List-ID)"
+      },
+      {
+        "type": "textarea",
+        "id": "success",
+        "label": "Success message",
+        "default": "Thank you for subscribing! Check your email for a confirmation message."
+      },
+      {
+        "type": "range",
+        "id": "delay",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "s",
+        "label": "Popup delay (in seconds)",
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "dismiss",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "d",
+        "label": "Dismissal period (in days)",
+        "default": 30
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Image alignment",
+        "default": "right",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ]
+      },
+      {
+        "type": "textarea",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ]
+  }
+
+{% endschema %}

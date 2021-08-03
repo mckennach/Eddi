@@ -1,0 +1,190 @@
+.template-product .variant-container {
+  margin-bottom: 30px;
+}
+
+.swatch {
+  margin-right: 35px;
+  @media (max-width: 992px) {
+    margin-bottom: 15px;
+  }
+
+  .swatch-heading {
+    margin-bottom: 10px;
+    @include mobile-only {
+      margin-bottom: 15px;
+    }
+
+    h4 {
+      @include noto-reg-19;
+      color: $teal;
+      font-size: 1.7rem;
+      margin-bottom: 5px;
+      @include mobile-only {
+        font-size: 19px;
+        line-height: 27px;
+        margin-bottom: 0;
+      }
+    }
+
+    h5 {
+      @include noto-reg-12;
+      font-size: 13px;
+      letter-spacing: 0;
+      color: $lightGrey;
+      @include mobile-only {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+.swatch-element {
+  margin-right: 5px;
+
+  label {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    background: $portage;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 0.5px solid #C4C4C4;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #DED880;
+      bottom: -16px;
+      opacity: 0;
+      -webkit-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      transition: all 0.2s;
+    }
+
+    &:hover {
+      &:after {
+        bottom: -10px;
+        opacity: 1;
+        -webkit-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        transition: all 0.2s;
+      }
+    }
+    @include mobile-only {
+      width: 19px;
+      height: 19px;
+    }
+  }
+
+  input:checked + label {
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #DED880;
+      bottom: -10px;
+      opacity: 1;
+    }
+  }
+
+  input {
+    display: none;
+  }
+}
+
+.bundle-swatch {
+  .hover-img {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    -webkit-transition: 0.2s all;
+    -o-transition: 0.2s all;
+    -moz-transition: 0.2s all;
+    transition: 0.2s all;
+  }
+
+  .img {
+    opacity: 1;
+    -webkit-transition: 0.2s all;
+    -o-transition: 0.2s all;
+    -moz-transition: 0.2s all;
+    transition: 0.2s all;
+  }
+
+  .swatch-fragrance--icon {
+    margin-right: 15px;
+    position: relative;
+
+
+    &:hover {
+      .hover-img {
+        opacity: 1;
+        -webkit-transition: 0.2s all;
+        -o-transition: 0.2s all;
+        -moz-transition: 0.2s all;
+        transition: 0.2s all;
+      }
+
+      .img {
+        opacity: 0;
+        -webkit-transition: 0.2s all;
+        -o-transition: 0.2s all;
+        -moz-transition: 0.2s all;
+        transition: 0.2s all;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #DED880;
+        bottom: -10px;
+        left: 0;
+      }
+    }
+
+    &.active {
+      .hover-img {
+        opacity: 1;
+        -webkit-transition: 0.2s all;
+        -o-transition: 0.2s all;
+        -moz-transition: 0.2s all;
+        transition: 0.2s all;
+      }
+
+      .img {
+        opacity: 0;
+        -webkit-transition: 0.2s all;
+        -o-transition: 0.2s all;
+        -moz-transition: 0.2s all;
+        transition: 0.2s all;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #DED880;
+        bottom: -10px;
+        left: 0;
+      }
+    }
+  }
+
+  img {
+    max-width: 80px;
+  }
+}

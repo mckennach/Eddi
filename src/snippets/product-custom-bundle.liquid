@@ -1,0 +1,216 @@
+<section class="custom_bundle_heading">
+  <div class="container">
+    <h1 class="custom_bundle_heading--title">{{ product.title }}</h1>
+    <div class="custom_bundle_heading--desc">
+      {{ product.description }}
+    </div>
+  </div>
+</section>
+
+<section class="product_custom_bundles">
+  <div class="water-color-1">
+    <img src="{{ 'splash-blue.png' | asset_url }}" alt="">
+  </div>
+  <div class="water-color-2">
+    <img src="{{ 'splash-red.png' | asset_url }}" alt="">
+  </div>
+  <div class="container">
+    <div class="bundle_selections d-flex align-items-center justify-content-center">
+      <div class="bundle_selection bundle_selections--selection bundle_selection--0 active" data-position="0">
+        <div data-handle="" name="selection-0" class="bundle_selections--swatch swatch-0"></div>
+        <label class="readout-0" for="selection-0">Scent 1</label>
+      </div>
+      <div class="bundle_selection bundle_selections--selection bundle_selection--1 disabled" data-position="1">
+        <div data-handle="" name="selection-1" class="bundle_selections--swatch swatch-1"></div>
+        <label class="readout-1" for="selection-1">Scent 2</label>
+
+      </div>
+      <div class="bundle_selection bundle_selections--selection bundle_selection--2 disabled" data-position="2">
+        <div data-handle="" name="selection-2" class="bundle_selections--swatch swatch-2"></div>
+        <label class="readout-2" for="selection-2">Scent 3</label>
+
+      </div>
+      <div class="bundle_selection bundle_selections--selection bundle_selection--3 disabled" data-position="3">
+        <div data-handle="" name="selection-3" class="bundle_selections--swatch swatch-3"></div>
+        <label class="readout-3" for="selection-3">Scent 4</label>
+      </div>
+    </div>
+    {%- assign collection = collections['refills'] -%}
+    {% assign collectionHandles = 'happy-hour,park-day,sunday-drive' | split: ',' %}
+
+    <div class="cols-3">
+      {%- for handle in collectionHandles -%}
+        {%- assign bundleProduct = all_products[handle] -%}
+        <div class="bundle ">
+          {% if bundleProduct.featured_image != blank %}
+            <div class="bundle--hover-container">
+              <div class="bundle--image" data-product-id="{{ bundleProduct.id }}" data-sku="{{ bundleProduct.variants[0].sku }}" data-product-title="{{ bundleProduct.title }}" data-operation="add">
+                {% include 'responsive-image' with
+                  image: bundleProduct.images.last,
+                  max_width: 230,
+                  max_height: 300
+                %}
+              </div>
+              {% if bundleProduct.metafields.custom_fields["bundle_hover_image"] != blank %}
+                <div class="bundle--hover-image">
+                  <img src='{{bundleProduct.metafields.custom_fields["bundle_hover_image"]}}' alt="">
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+          {% if bundleProduct.metafields.custom_fields["the_weekend_collection"] != blank %}
+            {% for item in bundleProduct.metafields.custom_fields["the_weekend_collection"] %}
+              {% if item["title"] != blank %}
+                <h5 class="bundle--desc {{ bundleProduct.handle }}">{{ item["title"] }}</h5>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
+          <h4 class="bundle--title">{{ bundleProduct.title | escape }}</h4>
+          <div class="bundle--btn-container">
+
+            <button class="bundle--quick-view quick-view" type="button" name="button" data-product-id="{{ bundleProduct.id }}">SCENT DETAILS</button>
+
+            <button class="bundle--add add-to-bundle" data-product-id="{{ bundleProduct.id }}" data-sku="{{ bundleProduct.variants[0].sku }}" data-product-title="{{ bundleProduct.title }}" data-operation="add" type="button" name="button">Add</button>
+          </div>
+          <div class="">
+            <!-- {% if bundleProduct.handle == 'happy-hour' %}
+              {% include "illo-happy-hour-shape" %}
+            {% elsif bundleProduct.handle == 'sunday-drive' %}
+              {% include "illo-sunday-drive-shape" %}
+            {% elsif bundleProduct.handle == 'park-day' %}
+              {% include "illo-park-day-shape" %}
+            {% endif  %} -->
+          </div>
+          {% include "product-custom-bundle-quickview" with product: bundleProduct %}
+        </div>
+
+      {%- endfor -%}
+    </div>
+
+
+    {%- capture form_id -%}add-to-cart-{{ product.handle }}-{{ collection.handle }}-{{ section.id }}{%- endcapture -%}
+    <form class="product_custom_bundles--form" id="{{ form_id }}">
+      {% if product.selling_plan_groups[0].selling_plans.size != blank %}
+        {% assign selling_plan = product.selling_plan_groups[0].selling_plans[0] %}
+        {% assign price_adjustments = selling_plan.price_adjustments[0] %}
+        {% assign percent = price_adjustments.value | divided_by: 100.0 %}
+        {% assign newPrice = product.price | times: percent %}
+        {% assign newPrice = product.price | minus: newPrice %}
+        <div class="product_custom_bundles--subscription-container">
+          <div class="product_custom_bundles--inputs d-flex justify-content-between align-items-center">
+            <label class="product_custom_bundles--custom-check" for="false">
+              <input class="product_custom_bundles--input" type="radio" id="false" name="subscription" value="false" checked>
+              <span class="checkmark"></span>
+              <div class="product_custom_bundles--label-title">
+                One-Time Purchase
+                <div class="product_custom_bundles--label-subtitle">
+                  $11/refill when bundled in a 4-Pack
+                </div>
+              </div>
+            </label>
+
+            <label class="product_custom_bundles--input-label d-flex" for="false">
+              <div class="product_custom_bundles--label-price">
+
+
+
+                {%- if product.compare_at_price_max > product.price -%}
+                  <span class="visually-hidden" data-compare-text>{{- 'products.product.regular_price' | t -}}</span>
+                  <s data-compare-price style="margin-right: 15px;">
+                    {%- if product.compare_at_price > product.price -%}
+                      {{- product.compare_at_price | money_without_trailing_zeros -}}
+                    {%- endif -%}
+                  </s>
+                {% endif %}
+
+                <span  data-product-price>
+                  {{- product.price | money_without_trailing_zeros -}}
+                </span>
+
+
+
+              </div>
+            </label>
+          </div>
+
+          <div class="product_custom_bundles--inputs d-flex justify-content-between align-items-center">
+            <label class="product_custom_bundles--custom-check" for="true">
+              <input class="product_custom_bundles--input" type="radio" id="true" name="subscription" value="true">
+              <span class="checkmark"></span>
+              <div class="product_custom_bundles--label-title">
+                Subscribe & Save
+                <div class="open-sub-modal product_custom_bundles--label-subtitle">
+                  What’s the right frequency for your home?
+                </div>
+              </div>
+            </label>
+            <label class="product_custom_bundles--input-label d-flex" for="true">
+              <div class="product_custom_bundles--label-price">
+                {%- if product.compare_at_price_max > product.price -%}
+                  <span class="visually-hidden" data-compare-text>{{- 'products.product.regular_price' | t -}}</span>
+                  <s data-compare-price style="margin-right: 15px;">
+                    {%- if product.compare_at_price > product.price -%}
+                      {{- product.compare_at_price | money_without_trailing_zeros -}}
+                    {%- endif -%}
+                  </s>
+                {% endif %}
+
+                {{ newPrice | round | money_without_trailing_zeros }}
+              </div>
+            </label>
+
+          </div>
+          <div class="product_custom_bundles--frequency-container">
+            <div class="product_custom_bundles--frequency d-flex justify-content-center align-items-center">
+              <label class="product_custom_bundles--frequency-label">
+                Deliver every
+              </label>
+              <div class="product_custom_bundles--select-container">
+                <select id="select" class="product_custom_bundles--select selct" name="">
+                  {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
+                    <option value="{{ selling_plan.id }}">
+                      {% assign name = selling_plan.name | replace: 'Delivery Every ' %}
+                      {{ name }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      {% endif %}
+
+      <div class="product_custom_bundles--btn-container">
+        <button
+          class="custom-add-to-cart product_custom_bundles--add-to-cart js-go-cart-add-to-cart"
+          data-id=""
+          type="button" name="button">Pre-Order</button>
+        {% if section.settings.shipping_note != blank %}
+          <div class="shipping-note">{{ section.settings.shipping_note }}</div>
+        {% endif %}
+      </div>
+    </form>
+
+    <div class="" style="margin-top: 55px;">
+      {% include "product-detail-accordions" %}
+
+    </div>
+
+
+
+  </div>
+</section>
+
+
+
+
+
+
+<script type="text/javascript">
+  var product = {{ product | json }};
+  $(function() {
+    $('select').selectric();
+  });
+</script>

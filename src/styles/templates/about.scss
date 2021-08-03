@@ -1,0 +1,322 @@
+#about-us {
+  .intro {
+    padding: 10rem 0;
+    text-align: center;
+    @include mobile-only {
+      padding: 5rem 0;
+    }
+
+    &--title {
+      @include abhaya-reg-55;
+    }
+  }
+
+  .mission {
+    background: $teal;
+    padding: 5.5rem 0;
+    color: $white;
+    text-align: center;
+
+    &--title {
+      @include abhaya-bold-30;
+      font-weight: normal;
+      line-height: 81px;
+      @include mobile-only {
+        font-size: 25px;
+        line-height: 50px;
+      }
+    }
+
+    &--desc,
+    &--desc p {
+      color: $white;
+      @include gotham-book-16;
+      max-width: 375px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .press {
+    text-align: center;
+    padding: 7.5rem 0;
+    background: $offWhite;
+    @include mobile-only {
+      padding: 2.5rem 0;
+      background: rgba(196, 201, 214, .14);
+    }
+
+    &--title {
+      @include noto-reg-15;
+      text-transform: uppercase;
+      color: $teal;
+      margin-bottom: 45px;
+    }
+
+    &--quote {
+      margin-bottom: 25px;
+    }
+
+    &--quote,
+    &--quote p {
+      @include abhaya-reg-55;
+      line-height: 65px;
+      @include mobile-only {
+        font-size: 18px;
+        line-height: 21px;
+      }
+    }
+
+    .swiper-slide {
+      padding-bottom: 75px;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: unset !important;
+
+      &:after,
+      &:before {
+        content: '';
+      }
+    }
+
+    .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+      margin: 0 10px;
+    }
+
+    .swiper-pagination-bullet {
+      background: #005454;
+      opacity: 0.21;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #005454;
+      opacity: 0.78;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+      @include mobile-only {
+        display: none;
+      }
+    }
+  }
+
+  .our_team {
+    padding: 10rem 0;
+    background: rgba(251, 247, 241, .25);
+    position: relative;
+    @include mobile-only {
+      text-align: center;
+      padding: 2.5rem 0;
+    }
+
+    &--title {
+      text-align: center;
+      margin-bottom: 6rem;
+      @include mobile-only {
+        font-size: 35px;
+        line-height: 41px;
+        margin-bottom: 30px;
+      }
+    }
+
+    &--member-img {
+      width: 500px;
+      height: 500px;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      border-radius: 100%;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin: 0 auto;
+      -webkit-transition: all 0.2s;
+      -o-transition: all 0.2s;
+      -moz-transition: all 0.2s;
+      transition: all 0.2s;
+      @media (max-width: 1045px) {
+        width: 400px;
+        height: 400px;
+      }
+      @media (max-width: 950px) {
+        width: 300px;
+        height: 300px;
+      }
+      @media (max-width: 500px) {
+        width: 300px;
+        height: 300px;
+      }
+      @media (max-width: 450px) {
+        width: 275px;
+        height: 275px;
+      }
+    }
+
+    &--member-title {
+      @include noto-reg-15;
+      text-transform: uppercase;
+      color: $sunday;
+      @include letter-spacing(200);
+      @include mobile-only {
+        font-size: 13px;
+        line-height: 19px;
+      }
+    }
+
+    &--member-name {
+      @include abhaya-reg-40;
+      color: $teal;
+      margin-bottom: 20px;
+      @include mobile-only {
+        font-size: 25px;
+        line-height: 29px;
+      }
+    }
+
+    &--member-desc,
+    &--member-desc p {
+      @include gotham-book-18;
+      line-height: 29px;
+      font-size: 1.6rem;
+      @include mobile-only {
+            line-height: 23px;
+      }
+    }
+
+    &--section {
+      margin-bottom: 175px;
+      position: relative;
+      @include mobile-only {
+        margin-bottom: 70px;
+
+        &:last-of-type {
+          margin-bottom: 25px;
+        }
+      }
+    }
+
+    &--member-img {}
+
+    &--odd {
+      text-align: right;
+    }
+
+    &--txt-even {
+      @include tablet-up {
+        text-align: right;
+      }
+    }
+
+    &--blob {
+      position: absolute;
+      top: -24rem;
+      z-index: -1;
+      max-width: 100%;
+      @include mobile-only {
+        width: 78rem;
+        max-width: unset;
+        left: -21rem;
+        top: -10rem;
+      }
+    }
+
+    &--txt-even {
+      @include mobile-only {
+        grid-row: 2;
+      }
+    }
+
+    .cols-2 {
+      @media (max-width: 1130px) {
+        // grid-template-columns: 1fr;
+      }
+      @include mobile-only {}
+    }
+  }
+
+  .branded_content {
+    &--txt-container {
+      padding: 15rem 2rem;
+      text-align: center;
+      @include mobile-only {
+        padding: 3rem 0;
+      }
+    }
+
+    &--txt-inner-container {
+      @include mobile-only {
+        width: 90%;
+        max-width: unset;
+        margin: auto;
+      }
+    }
+
+    &--desc,
+    &--title {
+      max-width: 530px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    &--title {
+      @include abhaya-reg-50;
+      margin-bottom: 20px;
+      @include mobile-only {
+        font-size: 35px;
+        line-height: 41px;
+      }
+    }
+
+    &--desc,
+    &--desc p {
+      @include gotham-book-18;
+      line-height: 30px;
+    }
+
+    &--img {
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -moz-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -moz-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      @include mobile-only {
+        height: 30rem;
+        grid-row: 1;
+      }
+
+      .responsive-image__wrapper {
+        @include mobile-only {
+          max-width: 11.9rem;
+        }
+      }
+    }
+
+    .cols-2 {
+      grid-column-gap: 0;
+      grid-row-gap: 0;
+    }
+
+    .even {}
+  }
+}

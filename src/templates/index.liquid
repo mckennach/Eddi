@@ -1,0 +1,9 @@
+{{ content_for_index }}
+
+
+
+{% for blog in blogs %}
+  {% for article in blog.articles %}
+    {{ article.title }}
+  {% endfor %}
+{% endfor %}

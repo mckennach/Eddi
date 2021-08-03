@@ -1,0 +1,61 @@
+{% include "branded-content" %}
+<!-- <iframe title="vimeo-player" src="https://player.vimeo.com/video/574172824" width="640" height="289" frameborder="0" allowfullscreen></iframe> -->
+{% schema %}
+  {
+    "name": "Branded CTA",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon",
+        "label": "Icon"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "link_label",
+        "label": "Link label"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Link"
+      },
+      {
+         "type": "select",
+         "id": "align",
+         "label": "Align Text Box",
+         "options": [
+           {
+             "value": "left",
+             "label": "Left"
+           },
+           {
+             "value": "right",
+             "label": "Right"
+           }
+         ],
+         "default": "left"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_icon",
+        "label": "Show Icon"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Branded CTA",
+        "category": "Branded Content"
+      }
+    ]
+  }
+{% endschema %}

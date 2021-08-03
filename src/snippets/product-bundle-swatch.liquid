@@ -1,0 +1,24 @@
+{% assign productHandles = 'happy-hour,park-day,sunday-drive' | split: ',' %}
+<div class="swatch bundle-swatch clearfix">
+  <div class="swatch-heading ">
+    <h4>Scent</h4>
+    <h5 class="readout swatch-0-readout">{{ product.title }}</h5>
+  </div>
+  <div class="d-flex">
+    {% for handle in productHandles %}
+      {%- assign prod = all_products[handle] -%}
+      {% if prod.metafields.custom_fields["set_icon"] != blank %}
+        <div class="swatch-fragrance--icon {% if product.handle == prod.handle %} active {% endif %}" style="">
+          <a href="{{ prod.url }}">
+            <img src="{{ prod.metafields.custom_fields["set_icon"] }}" alt="{{ prod.title }}" class="{% if prod.metafields.custom_fields["set_icon_hover_state"] != blank %}img{% endif %}">
+
+            {% if prod.metafields.custom_fields["set_icon_hover_state"] != blank %}
+              <img src="{{ prod.metafields.custom_fields["set_icon_hover_state"] }}" alt="{{ prod.title }}" class="hover-img">
+            {%- endif -%}
+
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>

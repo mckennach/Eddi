@@ -1,0 +1,80 @@
+{% include "hero" %}
+
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Meet Eddi"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "Image Mobile"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+         "type": "select",
+         "id": "align",
+         "label": "Align Text Box",
+         "options": [
+           {
+             "value": "left",
+             "label": "Left"
+           },
+           {
+             "value": "center",
+             "label": "Center"
+           },
+           {
+             "value": "right",
+             "label": "Right"
+           }
+         ],
+         "default": "left"
+      },
+      {
+        "type": "color",
+        "id": "txt_color",
+        "label": "Text Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "text",
+        "id": "hashtag",
+        "label": "Hashtag",
+        "default": "#MeetEddi"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero",
+        "category": "Image + Text"
+      }
+    ]
+  }
+{% endschema %}

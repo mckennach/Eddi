@@ -1,0 +1,35 @@
+.instagram {
+  text-align: center;
+  padding: 5rem 0 0;
+  &__title {
+    @include abhaya-reg-45;
+  }
+
+  &__desc, &__desc p {
+    @include gotham-book-22;
+
+  }
+
+  &__line-break {
+    height: 67px;
+    width: 1px;
+    background: #979FDA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    margin: 4rem auto 5rem;
+    @include mobile-only {
+      display: none;
+    }
+  }
+
+  .btn-load-more {
+    border: 0 !important;
+    .text {
+      @include noto-reg-15;
+      text-decoration: underline;
+
+    }
+  }
+}

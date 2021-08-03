@@ -1,0 +1,187 @@
+.subscription-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.25);
+  z-index: 100;
+  display: none;
+
+
+
+  &__modal {
+    width: 625px;
+    height: 625px;
+    margin: 0 auto;
+    @media (max-width: 680px) {
+      width: 320px;
+      height: 320px;
+    }
+    // width: 50vw;
+    // height: 50vw;
+  }
+
+  &__inner-modal {
+    background: #FBF7F1;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  &__heading {
+    text-align: center;
+    svg {
+      @include mobile-only {
+        width: 30px;
+  height: 30px;
+      }
+    }
+  }
+
+  &__title {
+    @include abhaya-reg-35;
+    @include max-width(25);
+    text-align: center;
+    line-height: 40px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    @include mobile-only {
+      font-size: 20px;
+      line-height: 22px;
+      max-width: 145px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+    }
+  }
+
+  &__desc {
+    @include noto-reg-18;
+    @include max-width(48.8);
+    text-align: center;
+    line-height: 26px;
+    margin-bottom: 10px;
+    @include mobile-only {
+      max-width: 238px;
+      margin-bottom: 5px;
+
+    }
+    p {
+      @include noto-reg-18;
+      font-size: 16px;
+      line-height: 24px;
+      @include mobile-only {
+        font-size: 9px;
+        line-height: 13px;
+        margin-bottom: 5px;
+
+      }
+    }
+  }
+
+  &__selection-container {
+    @include max-width(37.8);
+  }
+
+  &__frequency-container {
+    @include max-width(30.8);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__delivery-every,
+  &__delivery-every p {
+    @include noto-reg-18;
+    line-height: 26px;
+    @include mobile-only {
+      font-size: 9px;
+      line-height: 13px;
+    }
+
+  }
+
+  &__frequency,
+  &__frequency p {
+    @include noto-reg-18;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 58px;
+    color: #969EDC;
+    @include mobile-only {
+      font-size: 20px;
+      line-height: 29px;
+    }
+  }
+
+  &__note,
+  &__note p {
+    text-align: center;
+    @include max-width(28);
+    @include noto-reg-11;
+    color: #939393;
+    @include mobile-only {
+      font-size: 7px;
+      line-height: 10px;
+    }
+  }
+
+  &__selector {
+    margin: 15px 0;
+    @include noto-reg-25;
+    @include mobile-only {
+      font-size: 16px;
+      line-height: 24px;
+      margin: 7px 0;
+    }
+  }
+
+  .selectric-subscription-popup__select {
+    margin-left: 15px;
+  }
+
+  .close-modal-sub {
+    float: right;
+
+    svg path {
+      fill: white;
+    }
+  }
+
+  .selectric .label {
+    @include mobile-only {
+      font-size: 10px;
+      line-height: 29px;
+      height: 31px;
+    }
+  }
+
+  .selectric .button {
+    @include mobile-only {
+      height: 31px;
+    }
+  }
+}

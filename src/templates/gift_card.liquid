@@ -1,0 +1,261 @@
+{% comment %}
+  QR code is rendered in `#QrCode`
+
+  `gift_card.pass_url` is true if apple wallet is enabled for the shop
+{% endcomment %}
+
+
+
+
+{% layout 'gift_card' %}
+<div class="wrapper">
+  <div class="container">
+    <header role="banner">
+        <a href="{{ shop.url }}">
+          {% include "icon-wordmark-green" %}
+        </a>
+    </header>
+
+    <main class="giftcard {% if gift_card.expired or gift_card.enabled != true %} giftcard--disabled{% endif %}">
+
+
+      {{ gift_card.line_item_id }}
+
+      {%- for item in gift_card.properties.line_item -%}
+        {{ item.id }}
+      {%- endfor -%}
+
+      {%- assign cardPrice = gift_card.initial_value -%}
+      {%- assign giftCardProduct = linklists.admin-gift-card.links.first.object -%}
+      {%- assign customImage = 'gift-card/card.jpg' | shopify_asset_url -%}
+      {%- for variant in giftCardProduct.variants -%}
+        {%- if variant.price != cardPrice %}{% continue %}{% endif -%}
+        {%- if variant.image.src == blank %}{% break %}{% endif -%}
+        {%- assign customImage = variant.image | img_url:'949x' -%}
+        {%- break -%}
+      {%- endfor -%}
+
+
+      {%- comment -%}
+        Somewhere in your template you'll have the image shown. Instead of hard coding in
+        the source, we replace that with the variable we created above.
+      {%- endcomment -%}
+      <!-- <img  src="{{ customImage }}" alt="Gift card illustration" class="gift-image"> -->
+      <img src= "https://cdn.shopify.com/s/files/1/0545/0137/6193/t/32/assets/Eddi-Gift-Card-Email-2.jpg?v=1627424693"  alt="Gift card illustration" class="gift-image" width="500" height="500">
+
+      <h1>{{ 'gift_cards.issued.subtext' | t }}</h1>
+      {% unless gift_card.enabled %}
+        <span class="giftcard-tag">{{ 'gift_cards.issued.disabled' | t }}</span>
+      {% endunless %}
+
+      {%- assign gift_card_expiry_date = gift_card.expires_on | date: "%d/%m/%y" -%}
+
+      {% if gift_card.expired and gift_card.enabled %}
+        <span class="giftcard-tag">{{ 'gift_cards.issued.expired' | t: expiry: gift_card_expiry_date }}</span>
+      {% endif %}
+
+      {% if gift_card.expired != true and gift_card.expires_on and gift_card.enabled %}
+        <span class="giftcard-tag giftcard-tag--active">{{ 'gift_cards.issued.active' | t: expiry: gift_card_expiry_date }}</span>
+      {% endif %}
+
+
+
+      {% assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency %}
+
+      <h2>{{ 'gift_cards.issued.initial_value' | t: value: formatted_initial_value }}</h2>
+
+      {% assign formatted_current_balance = gift_card.balance | money %}
+
+      {% if gift_card.balance != gift_card.initial_value %}
+        <p>{{ 'gift_cards.issued.remaining_html' | t: balance: formatted_current_balance }}</p>
+      {% endif %}
+
+      {%- assign code_size = gift_card.code | format_code | size -%}
+      <span id="GiftCardDigits" class="giftcard__code" data-gift-card-digits>{{ gift_card.code | format_code }}</span>
+
+      <p>{{ 'gift_cards.issued.redeem' | t }}</p>
+
+      <div class="flex">
+        <canvas id="QrCode" class="giftcard-qr" data-identifier="{{ gift_card.qr_identifier }}" data-gift-card-qr></canvas>
+
+        {% if gift_card.pass_url %}
+          <a href="{{ gift_card.pass_url }}" class="apple-wallet">
+            <img class="apple-wallet-image" src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" width="120" height="40" alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}">
+          </a>
+        {% endif %}
+
+        <button id="PrintGiftCard" class="print-giftcard" data-gift-card-print>
+          {{ 'gift_cards.issued.print' | t }}
+        </button>
+
+        <a href="{{ shop.url }}" class="button" target="_blank">{{ 'gift_cards.issued.shop_link' | t }}</a>
+
+      </div>
+
+
+    </main>
+
+  </div>
+</div>
+
+
+<style media="screen">
+
+  @font-face {
+    font-family: 'Abhaya Libre';
+    src: url('{{ 'AbhayaLibre-Regular.eot' | asset_url }}');
+    src: url('{{ 'AbhayaLibre-Regular.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+        url('{{ 'AbhayaLibre-Regular.woff2' | asset_url }}') format('woff2'),
+        url('{{ 'AbhayaLibre-Regular.woff' | asset_url }}') format('woff'),
+        url('{{ 'AbhayaLibre-Regular.otf' | asset_url }}') format('opentype'),
+        url('{{ 'AbhayaLibre-Regular.ttf' | asset_url }}') format('truetype'),
+        url('{{ 'AbhayaLibre-Regular.svg#AbhayaLibre-Regular' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+
+  @font-face {
+    font-family: 'Gotham Book';
+    src: url('{{ 'Gotham-Book.eot' | asset_url }}');
+    src: url('{{ 'Gotham-Book.eot?#iefix' | asset_url }}') format('embedded-opentype'),
+        url('{{ 'Gotham-Book.woff2' | asset_url }}') format('woff2'),
+        url('{{ 'Gotham-Book.woff' | asset_url }}') format('woff'),
+        url('{{ 'Gotham-Book.otf' | asset_url }}') format('opentype'),
+        url('{{ 'Gotham-Book.ttf' | asset_url }}') format('truetype'),
+        url('{{ 'Gotham-Book.svg#Gotham-Book' | asset_url }}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Gotham SSm';
+    src: url('{{ 'GothamSSm-Book_Web.woff2' | asset_url }}') format('woff2'),
+        url('{{ 'GothamSSm-Book_Web.woff' | asset_url }}') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  html {
+    background: #ffffff;
+    color: #005454;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            font-size: 10px !important;
+
+  }
+
+  *,
+  *::after,
+  *::before {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+
+  body,
+  html {
+    height: 100%;
+  }
+
+  body {
+    main {
+      overflow-x: hidden;
+    }
+  }
+
+  main {
+    padding: 0 0 5rem;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Abhaya Libre';
+
+  }
+
+  h1, h2 {
+    font-size: 30px;
+    letter-spacing: .02em;
+  }
+
+  #GiftCardDigits {
+    font-size: 20px;
+    letter-spacing: .03em;
+    font-family: 'Noto Sans JP';
+  }
+
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    max-width: 1360px;
+    text-align: center;
+  }
+
+  .gift-image {
+    max-width: 500px;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    max-width: 21rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  p, a {
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: .03em;
+    font-family: 'Noto Sans JP';
+    color: #005454;
+
+  }
+
+  button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0;
+    color: #005454;
+    border: none;
+    font-size: 15px;
+    line-height: 18px;
+    letter-spacing: .03em;
+    font-family: 'Noto Sans JP';
+    border: 1px solid #ded97a;
+    background: unset;
+    padding: 1.2rem 3.2rem;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+
+</style>
+
+<script type="text/javascript">
+
+    console.log( {{ giftCardProduct.variants  | json }} );
+
+    $.get( "/admin/api/2021-07/gift_cards.json", function( data ) {
+
+      console.log(data);
+    });
+</script>

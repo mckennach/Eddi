@@ -1,0 +1,47 @@
+<section class="instagram">
+  <div class="">
+    {%- if section.settings.title != blank -%}
+      <h2 class="instagram__title">
+        <a href="https://www.instagram.com/meeteddi/" target="_blank">
+          @meeteddi
+        </a>
+      </h2>
+    {%- endif -%}
+    {%- if section.settings.desc != blank -%}
+      <div class="instagram__desc">
+        <a href="https://www.instagram.com/meeteddi/" target="_blank"><p>Join the new counter culture on Instagram.</p></a>
+      </div>
+    {%- endif -%}
+    <div class="instagram__line-break"></div>
+
+    <div class="">
+      <covet-pics-widget gallery-embed-id="192764"></covet-pics-widget>
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Instagram",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Instagram",
+        "category": "Social Media"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,254 @@
+#custom-hand-soap-refill-4-pack, #create-your-own-4-pack, {
+  .reviews {
+    padding-top: 11rem;
+    @media (max-width: 620px) {
+      padding-top: 7rem;
+    }
+
+    @media (max-width: 400px) {
+      padding-top: 2.5rem;
+    }
+  }
+}
+
+[data-count="0"] .stamped-summary-starrating i:before,
+.stamped-starrating a {
+  color: #969EDC;
+}
+
+.reviews {
+  padding: 7.5rem 0;
+}
+
+#stamped-main-widget {
+  .stamped-header-title {
+    display: none;
+  }
+  .stamped-review-body {
+    padding-left: 20rem;
+    @include mobile-only {
+      padding-left: 0;
+    }
+  }
+
+  .new-review-form, .stamped-content form {
+    margin: 0;
+  }
+
+  .stamped-summary-actions {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    .stamped-summary-actions-newquestion,
+    .stamped-summary-actions-newreview {
+      margin: 15px 0 40px;
+      float: unset;
+      text-align: center;
+      @include noto-reg-15;
+      letter-spacing: 0;
+      color: $teal;
+      border: none;
+      border: 1px solid $chartreuse;
+      background: unset;
+      padding: 1.2rem 3.2rem;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      -moz-transition: all 0.5s;
+      transition: all 0.5s;
+      @include mobile-only {
+        padding: 0.5rem 2.7rem;
+      }
+
+      &:hover {
+        background: $chartreuse;
+        color: white;
+        -webkit-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        transition: all 0.5s;
+      }
+    }
+
+    .stamped-summary-actions-clear:before,
+    .stamped-summary-actions-mobile-filter i:before,
+    .stamped-summary-actions-newquestion:before,
+    .stamped-summary-actions-newreview:before {
+      display: none;
+    }
+  }
+
+  .author {
+    @include noto-reg-25;
+    font-size: 23px;
+  line-height: 44px;  
+  }
+
+  .stamped-review-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: column-reverse;
+    -moz-box-orient: vertical;
+    -moz-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+    position: relative;
+  }
+
+  .stamped-review {
+    position: relative;
+  }
+
+  [data-widget-type=minimal] .stamped-summary-starrating {
+    margin: 0;
+  }
+
+  span.stamped-starratings.stamped-review-header-starratings {
+    position: absolute;
+    top: 13px;
+    left: 20rem;
+    @include mobile-only {
+      left: unset;
+      right: 0;
+    }
+  }
+
+  .stamped-review-header-title {
+    @include noto-reg-19;
+    font-weight: normal;
+    color: $teal;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .stamped-review-content-body {
+    color: #939393;
+    @include noto-reg-15;
+  }
+
+  .stamped-review-header .created,
+  .stamped-review-header-byline .created {
+    @include noto-reg-15;
+    color: $teal;
+  }
+
+  form {
+    position: relative;
+    // @include max-width(45);
+    .input-container {
+        position: relative;
+        margin-bottom: 15px;
+
+    }
+
+     input[type=email], input[type=text], input[type=password], textarea {
+      background: white;
+      border: 1px solid #085454;
+      -webkit-box-shadow: unset;
+         -moz-box-shadow: unset;
+              box-shadow: unset;
+      padding: 15px 10px;
+      width: 100%;
+      color: $teal;
+      @include noto-reg-12;
+      letter-spacing: 0;
+      ::-moz-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+      :-ms-input-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+      ::-webkit-input-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+      :-moz-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+      ::-ms-input-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+      ::placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+    }
+
+    input[type=submit], button, .button {
+      text-align: center;
+      @include noto-reg-15;
+       letter-spacing: 0;
+       color: $teal;
+       border: none;
+       border: 1px solid $teal;
+       background: unset;
+       padding: 1.2rem 3.2rem;
+       -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+               border-radius: 2px;
+       // width: 100%;
+       margin-bottom: 10px;
+       @include mobile-only {
+         padding: .5rem 2.7rem;
+       }
+       &:hover {
+         background: $teal;
+         color: white;
+       }
+    }
+
+    .forgot {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+      position: absolute;
+      top: 29%;
+      right: 11px;
+    }
+
+    button {
+      // width: 100%;
+    }
+
+    .create-account {
+      p, a {
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+      a {
+        text-decoration: underline;
+      }
+    }
+
+  }
+}

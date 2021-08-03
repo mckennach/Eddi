@@ -1,0 +1,138 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+{%- assign groupSize = 4 -%}
+{%- assign bundle = false -%}
+{% assign isGiftCard = false %}
+{% assign isDispenser = false %}
+
+{% assign isHidden = 'nah' %}
+{% if product.handle contains 'gift-card' %}
+  {% assign isGiftCard = true %}
+{% endif %}
+{% if product.handle contains 'park-day' or product.handle contains 'happy-hour' or product.handle contains 'sunday-drive' %}
+  {% assign groupSize = 1 %}
+  {%- assign bundle = true -%}
+{% endif %}
+
+{% if product.handle contains 'dispenser'  %}
+  {% assign groupSize = 3 %}
+  {% assign isDispenser = true %}
+{% endif %}
+
+
+
+
+
+<div class="product_detail_image mobile-hide">
+  <div class="row">
+    {% if product.images.size > 1 %}
+      <div class="col-md-2  product_detail_image--thumbnails" style="">
+        {% for image in product.images %}
+          {% capture wrapper_class %}
+            {%- unless featured_image == image -%}
+              hide
+            {%- endunless -%}
+          {% endcapture %}
+
+
+          {% if bundle %}
+            {% if forloop.last %}
+              {% assign isHidden = 'hide' %}
+            {% endif %}
+            {% assign group = forloop.index0 | modulo: 3 %}
+          {% elsif isGiftCard %}
+            {% assign group = forloop.index0 | modulo: 1 %}
+          {% elsif isDispenser %}
+            {% assign group = forloop.index0 | modulo: 4 %}
+          {% else %}
+            {% assign group = forloop.index0 | modulo: 5 %}
+          {% endif %}
+
+          {% if isGiftCard %}
+            <div id="group-thumbnail-{{ image.id }}" class="{{ wrapper_class }}"  data-image-id="{{ image.id }}" data-product-thumbnail-wrapper>
+          {% else %}
+            {% if group == 0 %}
+              <div id="group-thumbnail-{{ image.id }}" class="{{ wrapper_class }}"  data-image-id="{{ image.id }}" data-product-thumbnail-wrapper>
+            {% endif %}
+          {% endif %}
+
+
+
+            <div class="thumb {{ isHidden }} thumbnail-{{ image.id }}" data-index="{{ forloop.index0 }}" data-id="{{ image.variant_ids[0] }}">
+              <a href="{{ image.src | img_url: '103x103', crop: 'center' }}"  data-thumbnail-id="{{ image.id }}" data-product-single-thumbnail{% if featured_image == image %} aria-current="true"{% endif %}>
+                <img class="product-single__thumbnail-image" src="{{ image.src | img_url: '103x103', crop: 'center' }}" alt="{{ image.alt | escape }}">
+              </a>
+            </div>
+
+
+            {% if isGiftCard %}
+                </div>
+            {% else %}
+              {% if group == groupSize%}
+                </div>
+              {% endif %}
+            {% endif %}
+
+
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="col-md-10">
+      {% for image in product.images %}
+        {% capture wrapper_class %}
+          {%- unless featured_image == image -%}
+            hide
+          {%- endunless -%}
+        {% endcapture %}
+        {% if bundle %}
+          {% if forloop.last %}
+            {% assign isHidden = 'hide' %}
+          {% endif %}
+        {% endif %}
+
+
+        <div class=" {{ wrapper_class }} product_detail_image--active-image-container" data-image-id="{{ image.id }}" data-product-image-wrapper>
+          <!-- <img src="{{ image | img_url }}" class="product-image product_detail_image--active-image" data-image-1="{{ image | img_url }}" data-image="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt }}" data-product-featured-image> -->
+          <img src="{{ image.src | img_url: 'master' }}" alt="" class="product-image product_detail_image--active-image" data-image-1="{{ image | img_url }}" data-image="{{ image | img_url: '2048x2048' }}" alt="{{ image.alt }}" data-product-featured-image>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<script>
+
+
+
+
+    // function checkFlag() {
+    //   if($.fn.zoom == undefined) {
+    //      window.setTimeout(checkFlag, 100); /* this checks the flag every 100 milliseconds*/
+    //   } else {
+    //     var productImage = $('.product-image');
+    //
+    //     for(var i = 0; i < productImage.length; i++) {
+    //       var img = productImage[i];
+    //       var zoomImage = $(img).attr('data-image');
+    //       $(img)
+    //           .wrap('<span style="display:inline-block"></span>')
+    //           .css('display', 'block')
+    //           .parent()
+    //           .zoom({
+    //             url: zoomImage
+    //           });
+    //     }
+    //   }
+    // }
+    // checkFlag();
+    //
+    // $('.product-template__images').ready(function() {
+    //     $('.product-template__images').animate({opacity: 1}, 10);
+    // });
+
+</script>

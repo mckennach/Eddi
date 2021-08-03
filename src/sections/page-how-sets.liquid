@@ -1,0 +1,107 @@
+<section class="sustainability">
+  <div class="container">
+    {%- if section.settings.title != blank -%}
+      <div class="sustainability__heading">
+        <h1 class="sustainability__title" data-aos="fade">{{ section.settings.title }}</h1>
+        {%- if section.settings.desc != blank -%}
+          <div class="sustainability__desc" data-aos="fade">
+            {{ section.settings.desc }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="cols-3">
+        {% for block in section.blocks %}
+          {% if 'section' == block.type %}
+            <div class="sustainability__item">
+              {%- if block.settings.image != blank -%}
+                {% include 'responsive-image' with image: block.settings.image, image_class: "css-class", wrapper_class: "wrapper-css-class", max_width: 250, max_height: 800 %}
+              {%- endif -%}
+              {%- if block.settings.title != blank -%}
+                <h3 class="sustainability__item-title" data-aos="fade">{{ block.settings.title }}</h3>
+              {%- endif -%}
+              {%- if block.settings.desc != blank -%}
+                <div class="sustainability__item-desc" data-aos="fade">{{ block.settings.desc }}</div>
+              {%- endif -%}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {%- endif -%}
+
+
+
+
+    {%- if section.settings.btn != blank -%}
+      <div class="sustainability__btn-container">
+        <a href="{{ section.settings.btn }}">
+
+          <button class="button-chartreuse" type="button" name="button">
+
+            {%- if section.settings.btn_label != blank -%}
+                {{ section.settings.btn_label }}
+            {%- else -%}
+                Learn More
+            {%- endif -%}
+          </button>
+        </a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Sustainability",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "btn_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "btn",
+        "label": "Button Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "section",
+        "name": "Section",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

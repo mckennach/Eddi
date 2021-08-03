@@ -1,0 +1,199 @@
+<section>
+  <div class="container">
+    {% for block in section.blocks %}
+
+        {% assign material_title = '' %}
+        {% assign material_img = '' %}
+        {% assign material_point = '' %}
+        {% assign material_txt = '' %}
+        {% assign material_align = '' %}
+        {% assign material_btn = '' %}
+
+        {% if 'material' == block.type %}
+          {% if forloop.index0 != 0 %}
+              </div>
+              <div class="material--line-break"></div>
+
+            </div>
+          {% endif %}
+
+          <div class="material">
+            <h2 class="material--title">{{ block.settings.title }}</h2>
+            <div class="material--inner-container">
+              {% if block.settings.image != blank %}
+                <div class="material--image" >
+                  <div class="material--img-container">
+                    <img src="{{ block.settings.image.src | img_url: '1200x800' }}" alt="" class="material--img lazyload" data-image-1="{{ block.settings.image.src | img_url }}" data-image="{{ block.settings.image.src | img_url: '1200x800' }}" alt="{{block.settings.image.alt }}" style="width: 100%;">
+                  </div>
+
+                  <!-- {% include 'responsive-image' with image: block.settings.image, image_class: "material--img", wrapper_class: "material--img-container", max_width: 1200, max_height: 800 %} -->
+                </div>
+              {% endif %}
+              {% if block.settings.button_link != blank and block.settings.enable_button %}
+                <div class="material--btn">
+                  <a href="{{ block.settings.button_link }}">
+                    <button class="button-chartreuse" type="button" name="button">{{ block.settings.button_label }}</button>
+                  </a>
+                </div>
+              {% endif %}
+
+        {% endif %}
+
+
+
+        {% if 'material_desc' == block.type %}
+            <div class="material--point-container align-{{ block.settings.align_txt }} width{{ block.settings.position_x }}" style="top:{{ block.settings.position_y }}%;">
+              <div class="material--point align-{{ block.settings.align_txt }} open-material-modal" data-modal="{{ forloop.index0 }}" style=" {%- if block.settings.align_txt == 'left' -%}left{%- else -%}right{%- endif -%}:{{ block.settings.position_x }}%; ">
+                <button class="material--point-circle">
+                  <div>
+                    +
+                  </div>
+                </button>
+              </div>
+              <div class="material--point-desc " style="">
+                <div class="material--point-inner-desc" data-modal="{{ forloop.index0 }}" data-aos="fade">
+
+                  <div class="txt">
+                    <div class="material--close-modal close-modal" data-modal="{{ forloop.index0 }}">
+                      {% include "icon-close" %}
+                    </div>
+                    {% if block.settings.title != blank %}
+                      <h4 class="txt--title align-{{ block.settings.align_txt }}" data-aos="fade">{{ block.settings.title }}</h4>
+                      <hr class="txt--break">
+                    {% else %}
+                      <h4 class="txt--title no-txt align-{{ block.settings.align_txt }}" data-aos="fade"></h4>
+                    {% endif %}
+                    {% if block.settings.desc != blank %}
+                      <div class="txt--desc align-{{ block.settings.align_txt }}" data-aos="fade">{{ block.settings.desc }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <style media="screen">
+              .align-{{ block.settings.align_txt }}.width{{ block.settings.position_x }}::before {
+                width: {{ block.settings.position_x | plus: '1.5' }}%;
+              }
+            </style>
+
+            {% if forloop.last == true %}
+
+                <div class="material--line-break"></div>
+
+              </div>
+            {% endif %}
+
+        {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<style media="screen">
+  .point {
+    height: 10px; width: 10px; background: black;
+    position: absolute;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Materials",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Materials"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "material",
+        "name": "Material",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "info": "use PNGs",
+            "label": "Image"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_button",
+            "label": "Show button only",
+            "info": "If you check this, it will only show a button instead of an image",
+            "default": false
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          }
+        ]
+      },
+      {
+        "type": "material_desc",
+        "name": "Material Descriptor",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+             "type": "select",
+             "id": "align_txt",
+             "label": "Align",
+             "options": [
+               {
+                 "value": "left",
+                 "label": "Left"
+               },
+               {
+                 "value": "right",
+                 "label": "Right"
+               }
+             ],
+             "default": "left"
+          },
+          {
+              "type": "range",
+              "id": "position_x",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "%",
+              "label": "Position X",
+              "default": 0
+          },
+          {
+              "type": "range",
+              "id": "position_y",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "%",
+              "label": "Position Y",
+              "default": 0
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,70 @@
+<section class="product_container" data-section-id="{{ section.id }}" data-section-type="product" class="product-template">
+  {% include "product-image-swiper" %}
+  <div class="container">
+    <div class="cols-product" style="">
+      <div class="">
+        {%- include 'product-detail-image' -%}
+        <div class="mobile-hide">
+          {%- include 'product-detail-accordions' -%}
+        </div>
+      </div>
+      <div class="mobile-container">
+        <div class="product_detail_container">
+          <div class="product_detail_container--heading">
+            <h1 class="product_detail_container--title">Hand Soap Refill 4-Pack</h1>
+
+          </div>
+          <div class="product-content-price">
+            {% include 'product-price' with product: product, current_variant: current_variant %}
+          </div>
+          <div class="product_detail_container--desc">
+            {{ product.description }}
+          </div>
+
+          {% include "product-bundle-swatch" %}
+
+          {%- include 'product-detail-form' -%}
+
+          {% if product.handle == 'hand-soap-dispensers' %}
+            <div class="gradient_cta d-flex flex-column justify-content-center align-items-center">
+              <h3 class="gradient_cta--title">Need soap with that?</h3>
+              <a href="#" class="gradient_cta--link">Try our best-selling Starter Set</a>
+            </div>
+          {% endif %}
+
+          {% include "product-upsell" %}
+          {% include "product-icon-list" %}
+
+          <div class="desktop-hide">
+            {%- include 'product-detail-accordions' -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "product-weekend-collection" %}
+{% include "product-full-width-text" %}
+{% include "product-fragrance" %}
+{% include "product-natural-scents" %}
+
+
+
+{% schema %}
+  {
+    "name": "Product Bundle",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "bundle_collection",
+        "label": "Bundle Collection"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note",
+        "label": "Shipping Note"
+      }
+    ]
+  }
+{% endschema %}

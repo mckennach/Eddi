@@ -1,0 +1,26 @@
+
+{% if block.settings.icon == 'no-plastic' %}
+  {%- include 'icon-no-plastic' -%}
+{% elsif block.settings.icon == 'design' %}
+  {%- include 'icon-design' -%}
+{% elsif block.settings.icon == 'lux_scents' %}
+  {%- include 'icon-lux_scents' -%}
+{% elsif block.settings.icon == 'refills' %}
+  {%- include 'icon-refills' -%}
+{% elsif block.settings.icon == 'plant-based' %}
+  {%- include 'icon-plant-based' -%}
+{% elsif block.settings.icon == 'bulky-refills' %}
+  {%- include 'icon-bulky-refills' -%}
+{% elsif block.settings.icon == 'messy-funnels' %}
+  {%- include 'icon-messy-funnels' -%}
+{% elsif block.settings.icon == 'diy-mixing' %}
+  {%- include 'icon-diy-mixing' -%}
+{% elsif block.settings.icon == 'wait-time' %}
+  {%- include 'icon-wait-time' -%}
+{% elsif block.settings.icon == 'chat' %}
+  {%- include 'icon-chat' -%}
+{% elsif block.settings.icon == 'call' %}
+  {%- include 'icon-phone' -%}
+{% elsif block.settings.icon == 'email' %}
+  {%- include 'icon-email' -%}
+{% endif %}

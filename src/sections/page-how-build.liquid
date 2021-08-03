@@ -1,0 +1,81 @@
+
+<section class="build">
+  {%- if section.settings.title != blank -%}
+    <div class="build__heading desktop-hide">
+      <h2 class="build__title">{{ section.settings.title }}</h2>
+    </div>
+  {%- endif -%}
+  <div class="cols-2">
+    <div class="lazyload build__img" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+    <div class="">
+      <div class="build__inner-container">
+        {%- if section.settings.title != blank -%}
+          <div class="build__heading mobile-hide">
+            <h2 class="build__title">{{ section.settings.title }}</h2>
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="">
+            {% for block in section.blocks %}
+              {% if 'step' == block.type %}
+                <div class="build__item row">
+
+                  <div class="build__count col-md-1">
+                    <div class="build__count-container ">
+                      {{ forloop.index }}
+                    </div>
+                  </div>
+                  {%- if block.settings.desc != blank -%}
+                    <div class="build__item-desc col-md-11">{{ block.settings.desc }}</div>
+                  {%- endif -%}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Build",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "step",
+        "name": "Step",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

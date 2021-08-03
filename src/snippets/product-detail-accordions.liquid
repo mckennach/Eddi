@@ -1,0 +1,11 @@
+{% if product.metafields.custom_fields["accordion"] != blank %}
+  <div class="product_detail_accordion">
+      {% for item in product.metafields.custom_fields["accordion"] %}
+        <div class="product_detail_accordion--item">
+            {% if item["title"] != blank  %}
+              {% include "accordion" with title: item["title"], desc: item["description"] %}
+          {% endif %}
+        </div>
+       {% endfor %}
+     </div>
+{% endif %}

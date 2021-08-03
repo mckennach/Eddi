@@ -1,0 +1,33 @@
+<section class="hero lazyload" data-bgset="{% include 'responsive-bg-image', image: section.settings.image  %}">
+  <div class="container d-flex  align-items-center {% if section.settings.align == 'right' %} justify-content-end {% elsif section.settings.align == 'left' %} justify-content-start {% elsif section.settings.align == 'center'%} justify-content-center {% endif%}">
+      <div class=" hero--{{ section.settings.align }}">
+        <div class="hero--txt-container">
+          {% if section.settings.title != blank  %}
+            <h1 class="hero--title" style="color: {{ section.settings.txt_color }};">{{ section.settings.title }}</h1>
+          {% endif %}
+          {% if section.settings.desc != blank  %}
+            <div class="hero--desc"><p style="color: {{ section.settings.txt_color }};">{{ section.settings.desc | strip_html }}</p></div>
+          {% endif %}
+          {% if section.settings.button_link != blank  %}
+            <a href="{{ section.settings.button_link }}">
+              <button type="button" name="button" class="button-chartreuse">
+                {% if section.settings.button_label != blank  %}
+                  {{ section.settings.button_label }}
+                {% else %}
+                  Shop Now
+                {% endif %}
+              </button>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      {%- if section.settings.hashtag -%}
+        <div class="hero--hashtag">
+          {{ section.settings.hashtag }}
+        </div>
+      {%- endif -%}
+  </div>
+  <div class="hero--underlay"></div>
+
+</section>

@@ -1,0 +1,119 @@
+{% include "product-custom-bundle" %}
+
+
+
+
+
+{% if product.metafields.custom_fields["floating_image_cta_section"] != blank %}
+
+<section class="custom_cta">
+  <div class="custom_cta--bg">
+    {% for item in product.metafields.custom_fields["floating_image_cta_section"] %}
+    {% if item["image"] != blank %}
+      <div class="custom_cta--image">
+        <img src="{{ item["image"] }}" alt="">
+      </div>
+    {%- endif -%}
+    <div class="container">
+      <div class="cols-1-2">
+        <div class=""></div>
+        <div class="custom_cta--txt-container">
+          {% if item["title"] != blank %}
+            <h2 class="custom_cta--title">{{ item["title"] }}</h2>
+          {%- endif -%}
+          {% if item["description"] != blank %}
+            <div class="custom_cta--desc">{{ item["description"] }}</div>
+          {%- endif -%}
+          {% if item["button"] != blank %}
+            <div class="custom_cta--link">
+              {{ item["button"] }}
+            </div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  {% endfor %}
+
+</section>
+
+
+{% endif %}
+
+
+{% include 'yotpo' %}
+
+{% if product.metafields.custom_fields["refill_content"] != blank %}
+  <section class="refill_content">
+    {% for item in product.metafields.custom_fields["refill_content"] %}
+      {% if item["full_width_image"] == 1 %}
+        {% if item["image"] != blank %}
+          <div class="lazyload refill_content--full-img" style="background-image: url( {{ item['image'] }} );">
+            <div class="container">
+              <div class="refill_content--txt-inner-container">
+                {% if item["title"] != blank %}
+                  <h2 class="refill_content--title">{{ item["title"] }}</h2>
+                {% endif %}
+                {% if item["description"] != blank %}
+                  <div class="refill_content--desc">{{ item["description"] }}</div>
+                {% endif %}
+                {% if item["link"] != blank %}
+                  <div class="refill_content--link button-chartreuse">
+                    {{ item["link"] }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="refill_content--underlay">
+
+          </div>
+        {% endif %}
+      {% else %}
+
+        <div class="cols-1-2 no-break">
+          <div class="lazyload refill_content--half-img" style="background-image: url( {{ item['image'] }} );"></div>
+          <div class="refill_content--txt-container d-flex justify-content-center align-items-center">
+            <div class="refill_content--txt-inner-container">
+              {% if item["title"] != blank %}
+                <h2 class="refill_content--title">{{ item["title"] }}</h2>
+              {% endif %}
+              {% if item["description"] != blank %}
+                <div class="refill_content--desc">{{ item["description"] }}</div>
+              {% endif %}
+              {% if item["link"] != blank %}
+                <div class="refill_content--link">
+                  {{ item["link"] }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </section>
+
+{% endif %}
+
+
+
+{% schema %}
+  {
+    "name": "Custom Bundle",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "bundle_collection",
+        "label": "Bundle Collection"
+      },
+      {
+        "type": "text",
+        "id": "shipping_note",
+        "label": "Shipping Note"
+      }
+    ]
+  }
+{% endschema %}

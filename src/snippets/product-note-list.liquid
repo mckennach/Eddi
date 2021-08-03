@@ -1,0 +1,20 @@
+{% if product.metafields.custom_fields["notes"] != blank %}
+  <div class="cols-3 no-break product_notes--notes {{ product.handle }}">
+      {% for item in product.metafields.custom_fields["notes"] %}
+        <div class="product_notes--note">
+           {% if item["title"] != blank %}
+              <h3 class="product_notes--note-title" data-aos="fade">{{ item["title"] }}</h3>
+           {% endif %}
+           {% if item["note"] != blank %}
+             <ul class="product_notes--note-ul">
+               {% for repeater_item in item["note"] %}
+                 <li class="product_notes--note-li" data-aos="fade">
+                   {{ repeater_item["note"] }}
+                 </li>
+               {% endfor %}
+             </ul>
+           {% endif %}
+         </div>
+       {% endfor %}
+  </div>
+{% endif %}

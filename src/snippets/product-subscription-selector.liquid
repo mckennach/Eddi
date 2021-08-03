@@ -1,0 +1,85 @@
+{% if product.selling_plan_groups[0].selling_plans.size != blank %}
+  {% assign selling_plan = product.selling_plan_groups[0].selling_plans[0] %}
+  {% assign price_adjustments = selling_plan.price_adjustments[0] %}
+  {% assign percent = price_adjustments.value | divided_by: 100.0 %}
+  {% assign newPrice = product.price | times: percent %}
+  {% assign newPrice = product.price | minus: newPrice %}
+
+  {% assign newComparePrice = product.compare_at_price | times: percent %}
+  {% assign newComparePrice = product.compare_at_price | minus: newComparePrice %}
+
+
+
+
+  <div class="product_subscription">
+    <div class="product_subscription--inputs d-flex justify-content-between align-items-center">
+      <label class="product_subscription--custom-check" for="false">
+        <input class="product_subscription--input" type="radio" id="false" name="subscription" value="false" checked>
+        <span class="checkmark"></span>
+        <div class="product_subscription--label-title">
+          One-Time Purchase
+          <div class="product_subscription--label-subtitle">
+            $11/refill when bundled in 4-Pack
+          </div>
+        </div>
+      </label>
+
+      <label class="product_subscription--input-label d-flex" for="false">
+        <div class="product_subscription--label-price">
+          {% include "product-price" %}
+        </div>
+      </label>
+    </div>
+
+    <div class="product_subscription--inputs d-flex justify-content-between align-items-center">
+      <label class="product_subscription--custom-check" for="true">
+        <input class="product_subscription--input" type="radio" id="true" name="subscription" value="true">
+        <span class="checkmark"></span>
+        <div class="product_subscription--label-title">
+          Subscribe & Save
+          <div class="open-sub-modal product_subscription--label-subtitle">
+            What’s the right frequency for your home?
+          </div>
+        </div>
+      </label>
+      <label class="product_subscription--input-label d-flex" for="true">
+        <div class="product_subscription--label-price">
+          <s>
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              {{- current_variant.compare_at_price | money_without_trailing_zeros -}}
+            {%- else -%}
+              {{- current_variant.price | money_without_trailing_zeros -}}
+            {%- endif -%}
+          </s>
+          <span style="margin-left: 15px;">{{ newPrice | round | money_without_trailing_zeros }}</span>
+        </div>
+      </label>
+    </div>
+    <div class="product_subscription--frequency d-flex align-items-center">
+      <label class="product_subscription--frequency-label">
+        Deliver every
+      </label>
+      <div class="product_subscription--select-container">
+        <script type="text/javascript">
+          console.log( {{ product | json }} );
+        </script>
+
+        <select id="select" class="product_subscription--select selct" name="">
+          {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
+            <option value="{{ selling_plan.id }}">
+              {% assign name = selling_plan.name | replace: 'Delivery Every ' %}
+              {{ name }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<script type="text/javascript">
+  var product = {{ product | json }};
+  $(function() {
+    $('select').selectric();
+  });
+</script>

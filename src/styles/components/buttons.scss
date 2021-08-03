@@ -1,0 +1,130 @@
+.button {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  // border: 0;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.popup-btn {
+text-align: center;
+ @include noto-reg-15;
+ letter-spacing: 0;
+ color: $teal;
+ border: none;
+ border: 1px solid $teal;
+ background: unset;
+ padding: 1.2rem 3.2rem;
+ -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+         border-radius: 2px;
+ @include mobile-only {
+   padding: .5rem 2.7rem;
+
+ }
+ &:hover {
+   background: $teal;
+   color: white;
+ }
+}
+
+button, .go-cart__button {
+   text-align: center;
+  @include noto-reg-15;
+  letter-spacing: 0;
+  color: $teal;
+  border: none;
+  border: 1px solid $chartreuse;
+  background: unset;
+  padding: 1.2rem 3.2rem;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+
+  @include mobile-only {
+    padding: .5rem 2.7rem;
+
+  }
+  &:hover {
+    background: $chartreuse;
+    color: white;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+}
+
+
+.button-chartreuse, #stamped-button-submit, .shopify-challenge__button  {
+  text-align: center;
+  @include noto-reg-15;
+  letter-spacing: 0;
+  color: $teal;
+  border: none;
+  border: 1px solid $chartreuse;
+  background: $chartreuse;
+  padding: 1.2rem 3.2rem;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+
+  @include mobile-only {
+    padding: .5rem 2.7rem;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+
+  }
+
+}
+
+.button-transparent {
+  text-align: center;
+  @include noto-reg-15;
+  letter-spacing: 0;
+  color: $teal;
+  border: none;
+  border: 1px solid $chartreuse;
+  background: unset;
+  padding: 1.2rem 3.2rem;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+
+  @include mobile-only {
+    padding: .5rem 2.7rem;
+
+  }
+  &:hover {
+    background: $chartreuse;
+    color: white;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+
+  }
+}

@@ -1,0 +1,40 @@
+.product_notes {
+  &--note {
+    text-align: left;
+    @media (max-width: 500px) {
+      // text-align: center;
+    }
+  }
+
+  &--note-title {
+    @include noto-reg-16;
+    @include mobile-only {
+      font-size: 16px;
+      line-height: 30px;
+      @include letter-spacing(3);
+    }
+  }
+
+  &--note-ul {
+    list-style: none;
+    padding: 0;
+    padding-bottom: 0;
+  }
+
+  &--note-li {
+    @include gotham-book-15;
+    color: $teal;
+    @include mobile-only {
+      font-size: 15px;
+      line-height: 20px;
+    }
+  }
+
+  &--notes {
+    grid-row-gap: 1rem;
+    @include mobile-only {
+          grid-row-gap: 0rem;
+    }
+  }
+
+}

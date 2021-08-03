@@ -1,0 +1,82 @@
+{% comment %}
+Snippet name: latest-post.liquid
+To this use on blog pages or anywhere else include 'latest-post'
+{%endcomment %}
+
+
+{% comment %}
+Code by Jason @ Freakdesign for this blog post:
+http://freakdesign.com.au/blogs/news/105090695-show-the-latest-shopify-articles-from-all-blogs
+---
+First add all the handles of the blogs you want to include.
+{% endcomment %}
+
+{% assign featuredBlogs = 'design,lifestyle,recylcing,soap,sustainability' | split:',' %}
+
+{% comment %}
+Set the featuredArticles variable to false by default.
+{% endcomment %}
+
+{% assign featuredArticles = false %}
+
+{% comment %}
+Grab the last 25 (default) articles from each Blog. Add the articles to the featureArticles variable.
+{% endcomment %}
+
+{% for featuredBlog in featuredBlogs %}
+    {% if blogs[featuredBlog].articles %}
+        {% if featuredArticles %}
+            {% assign featuredArticles = featuredArticles | concat:blogs[featuredBlog].articles %}
+        {% else %}
+            {% assign featuredArticles = blogs[featuredBlog].articles %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% comment %}
+If featuredArticles is not false we should have articles to show - so let's do it!
+{% endcomment %}
+
+
+<section class="blog_landing">
+  <div class="container">
+    {% if featuredArticles %}
+        {% assign featuredArticles = featuredArticles | sort:'published_at' | reverse %}
+
+
+        <div class="blog_landing--row row row row-cols-lg-2 row-cols-md-1">
+          {% for article in featuredArticles %}
+
+            {% assign url = article.url %}
+            {% assign articleHandle = article.title | replace: ' ', '-' %}
+            {% assign articleHandle = articleHandle | downcase %}
+            {% assign blogTitle = url | replace: '/blogs/', '' %}
+            {% assign blogTitle = blogTitle | replace: '/', '' %}
+            {% assign blogTitle = blogTitle | replace: articleHandle, '' %}
+
+            {% capture thecycle %}{% cycle 'odd', 'even' %}{% endcapture %}
+
+
+            <div class="blog_landing--article col-md {{ thecycle }}">
+              <a href="{{ article.url }}">
+                {% if article.image %}
+                  {% include 'responsive-image' with image: article.image, image_class: "blog_landing--img", wrapper_class: "blog_landing--img-wrapper", max_width: 700, max_height: 800 %}
+                {% endif %}
+                {% if blogTitle != blank %}
+                  <h5 class="blog_landing--blog-title">{{ blogTitle }}</h5>
+                {% endif %}
+                {% if article.title != blank %}
+                  <h3 class="blog_landing--article-title">{{ article.title }}</h3>
+                {% endif %}
+                {% if article.excerpt != blank %}
+                  <div class="blog_landing--excerpt">
+                    {{ article.excerpt }}
+                  </div>
+                {% endif %}
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+    {% endif %}
+  </div>
+</section>

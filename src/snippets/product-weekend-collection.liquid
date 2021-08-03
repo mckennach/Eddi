@@ -1,0 +1,61 @@
+{% if product.metafields.custom_fields["the_weekend_collection"] != blank %}
+  <section class="weekend_collection">
+    <div class="container">
+      {% for item in product.metafields.custom_fields["the_weekend_collection"] %}
+        <div class="cols-2">
+          <div class="weekend_collection--img-container">
+            <div class="weekend_collection--small" data-aos="fade">
+              {% if product.handle == 'sunday-drive' %}
+                <img src="{{ 'sunday-small.png' | asset_url }}" alt="">
+              {% elsif product.handle == 'park-day' %}
+                <img src="{{ 'park-day-small.png' | asset_url }}" alt="">
+              {% elsif product.handle == 'happy-hour' %}
+                <img src="{{ 'happy-hour-small.png' | asset_url }}" alt="">
+              {% endif %}
+            </div>
+            <h4 class="weekend_collection--label {{ product.handle }}">THE WEEKEND COLLECTION</h4>
+            {% if item["top_image"] != blank %}
+              <div class="weekend_collection--top-image">
+                <img src="{{ item['top_image'] }}" alt="">
+              </div>
+            {% endif %}
+            {% if item["main_image"] != blank %}
+              <div class="weekend_collection--main-image">
+                <img src="{{ item['main_image'] }}" alt="">
+              </div>
+            {% endif %}
+            {% if item["cropped_image"] != blank %}
+              <div class="weekend_collection--cropped-image">
+                <img src="{{ item['cropped_image'] }}" alt="">
+              </div>
+            {% endif %}
+          </div>
+          <div class="weekend_collection--txt-container d-flex flex-column align-items-center">
+            <div class="weekend_collection--inner-container ">
+              {% if item["title"] != blank %}
+                <h2 class="weekend_collection--title {{ product.handle }}">{{ item["title"] }}</h2>
+              {% endif %}
+              {% if item["description"] != blank %}
+                <div class="weekend_collection--desc">
+                  {{ item["description"] }}
+                </div>
+              {% endif %}
+              {% include "product-note-list" %}
+            </div>
+            <div class="weekend_collection--water-color-bottom" data-aos="fade">
+              {% if product.handle == 'sunday-drive' %}
+                <img src="{{ 'sunday-water.png' | asset_url }}" alt="">
+              {% elsif product.handle == 'park-day' %}
+                <img src="{{ 'park-water.png' | asset_url }}" alt="">
+              {% elsif product.handle == 'happy-hour' %}
+                <img src="{{ 'happy-water.png' | asset_url }}" alt="">
+              {% endif %}
+            </div>
+          </div>
+
+
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

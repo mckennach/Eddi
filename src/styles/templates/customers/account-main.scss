@@ -1,0 +1,217 @@
+.account-container {
+  background: $offWhite;
+  padding: 20rem 0 10rem;
+  position: relative;
+
+  .w--48 {
+    width: 48%;
+  }
+
+  .w--50 {
+    width: 50%;
+  }
+
+  h1 {
+    @include abhaya-reg-55;
+    text-align: center;
+  }
+
+  .watercolor1 {
+    position: absolute;
+    right: 0;
+    top: 15rem;
+    @include mobile-only {
+      display: none;
+    }
+  }
+
+  .watercolor2 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    @include mobile-only {
+      display: none;
+    }
+  }
+}
+
+[class^="account"] {
+  .heading {
+    @include max-width(33);
+
+    h2 {
+      @include abhaya-reg-70;
+      line-height: 61px;
+      margin-bottom: 10px;
+      @include mobile-only {
+        font-size: 37px;
+        line-height: 44px;
+      }
+    }
+
+    h3 {
+      @include abhaya-reg-70;
+      font-size: 35px;
+      line-height: 51px;
+      margin-bottom: 10px;
+      @include mobile-only {
+        font-size: 26px;
+        line-height: 24px;
+      }
+    }
+
+    p {}
+  }
+
+  div[data-recover-form] {
+    @include mobile-only {
+      max-width: 215px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      line-height: 20px;
+      @include mobile-only {
+        font-size: 9px;
+        line-height: 16px;
+        font-size: 9px;
+        line-height: 16px;
+        max-width: 13rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  div[data-recover-toggle] {
+    font-size: 1.5rem;
+    line-height: 20px;
+    @include mobile-only {
+      font-size: 9px;
+      line-height: 16px;
+      font-size: 9px;
+      line-height: 16px;
+      max-width: 13rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  form {
+    position: relative;
+    @include max-width(45);
+
+    .input-container {
+      position: relative;
+      margin-bottom: 15px;
+      @include mobile-only {
+        margin-bottom: 5px;
+      }
+    }
+
+    input[type=email],
+    input[type=password],
+    input[type=text] {
+      background: white;
+      border: 1px solid #085454;
+      -webkit-box-shadow: unset;
+      -moz-box-shadow: unset;
+      box-shadow: unset;
+      padding: 15px 10px;
+      width: 100%;
+      color: $teal;
+      @include noto-reg-12;
+      letter-spacing: 0;
+      @include mobile-only {
+        padding: 8px 10px;
+      }
+
+      ::-moz-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+
+      :-ms-input-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+
+      ::-webkit-input-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+
+      :-moz-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+
+      ::-ms-input-placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+
+      ::placeholder {
+        color: #939393;
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+    }
+
+    .button,
+    button,
+    input[type=submit] {
+      text-align: center;
+      @include noto-reg-15;
+      letter-spacing: 0;
+      color: $teal;
+      border: none;
+      border: 1px solid $teal;
+      background: unset;
+      padding: 1.2rem 3.2rem;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      width: 100%;
+      margin-bottom: 10px;
+      @include mobile-only {
+        padding: 0.5rem 2.7rem;
+      }
+
+      &:hover {
+        background: $teal;
+        color: white;
+      }
+    }
+
+    .forgot {
+      color: #939393;
+      @include noto-reg-12;
+      letter-spacing: 0;
+      position: absolute;
+      top: 29%;
+      right: 11px;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .create-account {
+      a,
+      p {
+        @include noto-reg-12;
+        letter-spacing: 0;
+      }
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+}

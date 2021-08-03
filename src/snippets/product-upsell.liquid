@@ -1,0 +1,14 @@
+{% if product.metafields.custom_fields["upsell_container"] != blank %}
+  <div class="gradient_cta d-flex flex-column justify-content-center align-items-center" data-aos="fade">
+    {% for item in product.metafields.custom_fields["upsell_container"] %}
+      <div class="fc-item fc-index--{{ forloop.index0 }}">
+         {% if item["title"] != blank %}
+           <h3 class="gradient_cta--title" >{{ item["title"] }}</h3>
+         {% endif %}
+         {% if item["link"] != blank %}
+           {{ item["link"] }}
+         {% endif %}
+       </div>
+     {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,57 @@
+<section class="packaging">
+  <div class="cols-2">
+    <div class="lazyload packaging--img" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+    <div class="packaging--txt-container">
+      <div class="packaging--txt-inner-container">
+        {%- if section.settings.title != blank -%}
+          <h2 class="packaging--title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.desc != blank -%}
+          <div class="packaging--desc">{{ section.settings.desc }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.title_2 != blank -%}
+          <h2 class="packaging--title">{{ section.settings.title_2 }}</h2>
+        {%- endif -%}
+        {%- if section.settings.desc_2 != blank -%}
+          <div class="packaging--desc">{{ section.settings.desc_2 }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Packaging",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "title_2",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc_2",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ]
+  }
+{% endschema %}

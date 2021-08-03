@@ -1,0 +1,19 @@
+.testimonials {
+  background: $skyBlue;
+  text-align: center;
+  padding: 3rem 0;
+
+  &--title {
+    @include noto-reg-15;
+    text-transform: uppercase;
+    color: $cornflower;
+    margin-bottom: 30px;
+  }
+
+  &--item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}

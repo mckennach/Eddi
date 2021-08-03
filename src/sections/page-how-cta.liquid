@@ -1,0 +1,105 @@
+<section class="how_cta">
+  <div class="how_cta--bg">
+    <div class="container">
+      <div class="cols-2-1">
+        <div class="how_cta--txt-container">
+          {%- if section.settings.title != blank -%}
+            <h2 class="how_cta--title">{{ section.settings.title }}</h2>
+          {%- endif -%}
+          {%- if section.settings.desc != blank -%}
+            <div class="how_cta--desc">{{ section.settings.desc }}</div>
+          {%- endif -%}
+          {% if section.settings.button_link != blank  %}
+            <a href="{{ section.settings.button_link }}">
+              <button type="button" name="button" class="button-chartreuse">
+                {% if section.settings.button_label != blank  %}
+                  {{ section.settings.button_label }}
+                {% else %}
+                  Shop Now
+                {% endif %}
+              </button>
+            </a>
+          {% endif %}
+        </div>
+        <div class="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {%- if section.settings.image != blank -%}
+    <div class="how_cta--image">
+      {% include 'responsive-image' with image: section.settings.image, image_class: "css-class", wrapper_class: "wrapper-css-class", max_width: 700, max_height: 950 %}
+    </div>
+      {%- if section.settings.floating_image != blank -%}
+        <div class="how_cta--floating-img">
+          {% include 'responsive-image' with image: section.settings.floating_image, image_class: "", wrapper_class: "floating-img", max_width: 95, max_height: 800 %}
+        </div>
+      {%- endif -%}
+  {%- endif -%}
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Call To Action",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Meet Eddi"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image",
+        "info": "Use PNG"
+      },
+      {
+        "type": "image_picker",
+        "id": "floating_image",
+        "label": "Floating Image",
+        "info": "Use PNG"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+         "type": "select",
+         "id": "align",
+         "label": "Align Text Box",
+         "options": [
+           {
+             "value": "left",
+             "label": "Left"
+           },
+           {
+             "value": "center",
+             "label": "Center"
+           },
+           {
+             "value": "right",
+             "label": "Right"
+           }
+         ],
+         "default": "left"
+      }
+    ]
+  }
+{% endschema %}

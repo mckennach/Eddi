@@ -1,0 +1,180 @@
+#frequently-asked-questions {
+  main {
+    background: $offWhite;
+    padding: 20rem 0 10rem;
+    @include mobile-only {
+      padding: 10rem 0 5rem;
+    }
+  }
+
+  .faq {
+    position: relative;
+
+    .container {
+      max-width: 982px;
+    }
+
+    .faq-trigger {
+      @include noto-reg-20;
+
+      &.active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+
+    ul {
+      @include mobile-only {
+        text-align: center;
+      }
+    }
+
+    .accordion:first-of-type {
+      border-top: 1px solid #707070;
+    }
+
+    &--title {
+      @include abhaya-reg-55;
+      text-align: center;
+      margin-bottom: 9.5rem;
+      @include mobile-only {
+        margin-bottom: 4rem;
+      }
+    }
+
+    .water-color-1 {
+      position: absolute;
+      right: -9rem;
+      top: -14rem;
+      max-width: 22rem;
+      @include mobile-only {
+        right: -9rem;
+      top: 2rem;
+      max-width: 18rem;
+      }
+    }
+
+    .water-color-2 {
+      position: absolute;
+      bottom: -8rem;
+      left: -18rem;
+      /* top: 0; */
+      max-width: 26rem;
+      @include mobile-only {
+        position: absolute;
+        bottom: unset;
+        left: -9rem;
+        top: 0;
+        /* top: 0; */
+        max-width: 19rem;
+      }
+    }
+
+    .accordion {
+      border-color: #707070;
+
+      &--title {
+        cursor: pointer;
+        padding: 2.4rem 0;
+        margin: 0;
+        position: relative;
+        color: $teal;
+        @include noto-reg-20;
+        @media (max-width: 992px) {
+          font-size: 1.5rem;
+          line-height: 35px;
+        }
+        @include mobile-only {
+          font-size: 12px;
+          line-height: 22px;
+          padding: 1.6rem 0;
+        }
+
+        .rela {
+          position: relative;
+        }
+        /* Plus / Minus icon */
+        span {
+          cursor: pointer;
+          position: absolute;
+          right: 14px;
+          top: 47%;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+          width: 12px;
+          height: 12px;
+          @media (max-width: 992px) {
+            width: 12px;
+            height: 12px;
+          }
+          @include mobile-only {
+            width: 6px;
+            height: 6px;
+          }
+        }
+
+        span::after,
+        span::before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 50%;
+          width: 100%;
+          border-bottom: 1px solid #BFBFBF;
+          @include mobile-only {
+            border-color: $teal;
+          }
+        }
+
+        span::before {
+          -webkit-transition: opacity 0.15s ease-in-out;
+          -o-transition: opacity 0.15s ease-in-out;
+          -moz-transition: opacity 0.15s ease-in-out;
+          transition: opacity 0.15s ease-in-out;
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+          -webkit-transition: all 0.2s;
+          -o-transition: all 0.2s;
+          -moz-transition: all 0.2s;
+          transition: all 0.2s;
+        }
+
+        &.active {
+          span::before {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            -webkit-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            transition: all 0.2s;
+          }
+
+          span::after {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            -webkit-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            transition: all 0.2s;
+          }
+        }
+      }
+
+      &--desc {
+        margin-top: 0;
+      }
+    }
+  }
+}

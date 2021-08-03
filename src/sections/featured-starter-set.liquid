@@ -1,0 +1,154 @@
+<section class="featured_starter_set">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2 class="featured_starter_set--title" data-aos="fade">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.desc != blank %}
+      <div class="featured_starter_set--desc" data-aos="fade">{{ section.settings.desc }}</div>
+    {% endif %}
+    <div class="cols-2" style="grid-row-gap: 0;">
+      {% if section.settings.image != blank %}
+        <div class="col-md lazyload featured_starter_set--img" data-aos="fade" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+      {% endif %}
+      <div class="col-md">
+        {%- assign product = all_products[section.settings.product] -%}
+
+        {% assign variantImage = '' %}
+        {% assign variantUrl = '' %}
+        {% assign variantID = '' %}
+        {% assign variantPrice = '' %}
+        {% assign variantColor = '' %}
+
+        <div class="cols-2 variant-cols" style="">
+          {% for variant in product.variants %}
+
+            {% if variantColor != variant.option1 %}
+              {% assign variantColor = variant.option1 %}
+              {% assign variantImagePosition = variant.featured_image.position   %}
+              {% assign variantImage = product.images[variantImagePosition] %}
+              {% assign variantUrl = variant.url %}
+              {% assign variantID = variant.id %}
+              {% assign variantPrice = variant.price %}
+
+              {%- if variantColor == 'Coconut' -%}
+                {% assign dispenserLink = '/products/hand-soap-dispensers?variant=40135756153025' %}
+              {%- elsif variantColor == 'Cornflower' -%}
+                {% assign dispenserLink = '/products/hand-soap-dispensers?variant=40135756054721' %}
+              {%- elsif variantColor == 'Midnight' -%}
+                {% assign dispenserLink = '/products/hand-soap-dispensers?variant=40135756251329' %}
+              {%- elsif variantColor == 'Terracotta' -%}
+                {% assign dispenserLink = '/products/hand-soap-dispensers?variant=40135756349633' %}
+              {%- endif -%}
+
+
+              <div class="featured_starter_set--item">
+                <div class="featured_starter_set--item-container" data-aos="fade">
+                  <a href="{{ variantUrl }}">
+                    <div class="featured_starter_set--hover-container starter-img-{{ forloop.index0 }}" style="background-image: url({{ variant.metafields.custom_fields['featured_image'] }});">
+
+
+                      {% comment %}
+                      {% if product.metafields.custom_fields["hover_photo"] != blank %}
+                        <img src="{{ variant.metafields.custom_fields['hover_photo'] }}" alt="" class="featured_collection--hover-image">
+                      {% endif %}
+
+
+                      {% if variant.metafields.custom_fields["featured_image"] != blank %}
+                        <img src="{{ variant.metafields.custom_fields['featured_image'] }}" alt="">
+                      {% else %}
+                        {% include 'responsive-image' with image: variantImage, image_class: "css-class", wrapper_class: "wrapper-css-class", max_width: 300, max_height: 300 %}
+                      {% endif %}
+                      {% if variant.metafields.custom_fields["hover_photo"] != blank %}
+                        <!-- <img src="{{ variant.metafields.custom_fields['hover_photo'] }}" alt="" class="featured_starter_set--hover-photo"> -->
+                      {% endif %}
+                      {% endcomment %}
+                    </div>
+                  </a>
+                  {% if variantColor != blank %}
+                    <h4 class="featured_starter_set--item-title">{{ variantColor }} Starter Set</h4>
+                  {% endif %}
+                  {% if variantPrice != blank %}
+                    <div class="featured_starter_set--item-price">{{ variantPrice | money_without_trailing_zeros }}</div>
+                  {% endif %}
+                  {% if variantPrice != blank %}
+                    <div class="featured_starter_set--item-btn">
+                      <a href="{{ variantUrl }}">
+                        <button type="button" name="button">
+                          Build Your Own
+                        </button>
+                      </a>
+                    </div>
+                  {% endif %}
+
+                  <div class="featured_starter_set--item-link">
+                    <a href="{{ dispenserLink }}">
+                      Dispenser Only? {% include "icon-arrow-right-sm" %}
+                    </a>
+                  </div>
+
+
+                </div>
+                <style media="screen">
+                  .starter-img-{{ forloop.index0 }}:hover {
+                    background-image: url({{ variant.metafields.custom_fields['hover_photo'] }}) !important;
+                    /* transition: all .2s; */
+                    background-position: center;
+                  }
+                </style>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+  <div class="watercolor-2" data-aos="fade-up">
+    {% include "illo-water-color-2" %}
+  </div>
+  <div class="watercolor-1" data-aos="fade-up">
+    {% include "illo-watercolor-1" %}
+  </div>
+</section>
+
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Starter Set Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "id": "product",
+        "type": "product",
+        "label": "Product"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Starter Set Section",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

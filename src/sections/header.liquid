@@ -1,0 +1,231 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available in the "Header" section in the theme editor.
+
+  Theme Store required settings
+  - Show announcement
+  - Text: message to announce
+  - Link: link of the announcement bar
+
+  Theme Store optional settings
+  - Home page only: only shows on the home page
+{%- endcomment -%}
+<section class="header_section" data-section-id="{{ section.id }}" data-section-type="header">
+
+  {%- include 'announcement-bar' -%}
+
+  <header class="header_main" role="banner">
+    <div class="outter-container">
+      <div class="container">
+        <div class="h100 d-flex justify-content-between align-items-center">
+          <div class="burger-container">
+            <button class="burger" type="button" name="button">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+          <div class="d-flex h100">
+            <div class="header_main--logo-container">
+              <a href="/" class="header_main--logo-image">
+                <div class="header_main--wordmark-white">
+                  {% include "icon-wordmark-white" %}
+                </div>
+                <div class="header_main--wordmark-green">
+                  {% include "icon-wordmark-green" %}
+                </div>
+              </a>
+            </div>
+
+            <nav class="header_main--main-nav d-flex" role="navigation">
+              <ul class="d-flex align-items-center justify-content-center">
+                {% for link in linklists[section.settings.menu].links %}
+                  {% if link.links != blank %}
+                    <li class="header_main--dropdown-container dropdown_has_nav">
+                      <a href="{{ link.url }}">
+                        {{ link.title }}
+                      </a>
+                      {% include "header-dropdown" %}
+                    </li>
+                  {% else %}
+                    <li>
+                      <a href="{{ link.url }}">
+                        {{ link.title }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+
+          <div class="d-flex align-items-center">
+            <ul class="d-flex align-items-center">
+              {% if shop.customer_accounts_enabled %}
+                <li class="mobile-hide"><a href="/account" class="open-account-modal">{{ 'layout.customer.account' | t }}</a></li>
+              {% endif %}
+              <li class="cart-li">
+                {%- include "go-cart-button" -%}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- <form action="/search" method="get" role="search">
+          <label for="Search-{{ section.id }}" class="label-hidden">
+            {{ 'general.search.placeholder' | t }}
+          </label>
+
+          <input type="search"
+            name="q"
+            id="Search-{{ section.id }}"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ 'general.search.placeholder' | t }}">
+
+          <button type="submit" class="button">
+            {% include 'icon-search' %}
+            <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+          </button>
+        </form> -->
+      </div>
+    </div>
+
+    <nav class="header_main--mobile-nav " role="navigation">
+      <ul class="d-flex flex-column align-items-center justify-content-center">
+        {% for link in linklists[section.settings.mobile_menu].links %}
+          {% if link.links != blank %}
+            <li class="header_main--dropdown-container dropdown_has_nav">
+              <a href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% else %}
+            <li>
+              <a href="{{ link.url }}" {% if link.url == '/account' %}class="open-account-modal"{% endif %}>
+                {{ link.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+  </header>
+
+
+</section>
+
+
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Announcement bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_home_page_only",
+        "label": "Show on home page only",
+        "default": true
+      },
+      {
+        "type": "richtext",
+        "id": "richtext",
+        "label": "Announcement Text"
+      },
+      {
+        "type": "richtext",
+        "id": "mobile_richtext",
+        "label": "Mobile Announcement Text"
+      },
+      {
+        "type": "url",
+        "id": "announcement_bar_link",
+        "label": "Announcement link",
+        "info": "Optional"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_color",
+        "label": "Announcement Background Color",
+        "default": "#D3A18B"
+      },
+      {
+        "type": "color",
+        "id": "announcement_txt_color",
+        "label": "Announcement Txt Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "mobile_menu",
+        "label": "Mobile Menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "{{ shop.name }}",
+  {% if section.settings.logo %}
+    {% assign image_size = section.settings.logo.width | append:'x' %}
+    "logo": "https:{{ section.settings.logo | img_url: image_size }}",
+  {% endif %}
+  "sameAs": [
+    "{{ settings.social_twitter_link }}",
+    "{{ settings.social_facebook_link }}",
+    "{{ settings.social_pinterest_link }}",
+    "{{ settings.social_instagram_link }}",
+    "{{ settings.social_tumblr_link }}",
+    "{{ settings.social_snapchat_link }}",
+    "{{ settings.social_youtube_link }}",
+    "{{ settings.social_vimeo_link }}"
+  ],
+  "url": "{{ shop.url }}{{ page.url }}"
+}
+</script>
+
+{% if template.name == 'index' %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ shop.url }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "url": "{{ shop.url }}{{ page.url }}"
+    }
+  </script>
+{% endif %}

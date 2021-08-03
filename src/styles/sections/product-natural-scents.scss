@@ -1,0 +1,104 @@
+.natural_scents {
+  background: $offWhite;
+  padding: 5rem 0 10rem;
+  text-align: center;
+  @include mobile-only {
+    padding: 5rem 0 3rem;
+  }
+
+  .swiper-container {
+    overflow: visible;
+  }
+  &--title {
+    margin-bottom: 5rem;
+    @include mobile-only {
+      font-size: 35px;
+      line-height: 35px;
+    }
+  }
+
+  .col {
+    &:hover {
+      .natural_scents--icon {
+        position: relative;
+        top: -2rem;
+        -webkit-transition: all .2s;
+        -o-transition: all .2s;
+        -moz-transition: all .2s;
+        transition: all .2s;
+      }
+    }
+  }
+
+  &--icon {
+    height: 100px;
+    width: 100px;
+    margin: 0 auto 2.5rem;
+    position: relative;
+    top: 0;
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    -moz-transition: all .2s;
+    transition: all .2s;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+       -moz-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+       -moz-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: 100px;
+    width: 100px;
+    margin: 0 auto 10px;
+    position: relative;
+    top: 0;
+    -webkit-transition: all .7s;
+    -o-transition: all .7s;
+    -moz-transition: all .7s;
+    transition: all .7s;
+    @include mobile-only {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 2rem;
+    }
+    svg {
+      // max-width: 6.5rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover {
+      top: -2rem;
+      @include mobile-only {
+        top: -1rem;
+        -webkit-transition: all .7s;
+        -o-transition: all .7s;
+        -moz-transition: all .7s;
+        transition: all .7s;
+      }
+    }
+  }
+
+
+  &--icon-label {
+    @include noto-reg-18;
+    @include letter-spacing(10);
+    font-size: 19px;
+    line-height: 28px;
+    @include max-width(14);
+    @include mobile-only {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+
+}

@@ -1,0 +1,54 @@
+{% if product.metafields.custom_fields["natural_scent_icons"] != blank %}
+  <section class="natural_scents">
+    <div class="container">
+
+        {% for item in product.metafields.custom_fields["natural_scent_icons"] %}
+          {% if item["title"] != blank %}
+            <h2 class="natural_scents--title" data-aos="fade">{{ item["title"] }}</h2>
+          {% endif %}
+          <div class="mobile-hide">
+            {% if item["icon_list"] != blank %}
+              <div class="row">
+                {% for icon_list_item in item["icon_list"] %}
+                  <div class="col">
+                    {% if icon_list_item["icon"] != blank %}
+                      <div class="natural_scents--icon" >
+                        <img src='{{icon_list_item["icon"]}}' alt="">
+                      </div>
+                    {% endif %}
+                    {% if icon_list_item["title"] != blank %}
+                      <h4 class="natural_scents--icon-label" data-aos="fade">{{icon_list_item["title"]}}</h4>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="icon-list-swiper desktop-hide">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                {% for icon_list_item in item["icon_list"] %}
+                  <div class="swiper-slide icon_list--item d-flex flex-column">
+                    {% if icon_list_item["icon"] != blank %}
+                      <div class="natural_scents--icon" >
+                        <img src='{{icon_list_item["icon"]}}' alt="">
+                      </div>
+                    {% endif %}
+                    {% if icon_list_item["title"] != blank %}
+                      <h4 class="natural_scents--icon-label" data-aos="fade">{{icon_list_item["title"]}}</h4>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+
+
+
+
+
+    </div>
+  </section>
+{% endif %}

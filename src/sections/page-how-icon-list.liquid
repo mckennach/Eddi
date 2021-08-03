@@ -1,0 +1,104 @@
+<section class="icon_list">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <div class="icon_list--heading">
+        <h2 class="icon_list--title">{{ section.settings.title }}</h2>
+        {% if section.settings.desc != blank %}
+          <div class="icon_list--desc">{{ section.settings.desc }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="cols-4">
+      {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'icon' %}
+              <div class="icon_list--item  d-flex flex-column">
+                {%- if block.settings.link -%}
+                  <a href="{{ block.settings.link }}" target="_blank">
+                {%- endif -%}
+                  <div class="icon_list--icon">
+                    {% include "icon", with icon: block.settings.icon %}
+                  </div>
+                  {% if block.settings.title != blank %}
+                    <div class="icon_list--icon-title">
+                      <p>{{ block.settings.title | strip_html }}</p>
+                    </div>
+                  {% endif %}
+                {%- if block.settings.link -%}
+                  </a>
+                {%- endif -%}
+              </div>
+          {% endcase  %}
+      {% endfor %}
+    </div>
+
+
+  </div>
+</section>
+
+<script type="text/javascript">
+  var iconSwiper = new Swiper('.icon-list-swiper .swiper-container', {
+    // Default parameters
+    slidesPerView: 3,
+    spaceBetween: 10,
+
+
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Icon List",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+             "type": "select",
+             "id": "icon",
+             "label": "Icon",
+             "options": [
+               {
+                 "value": "bulky-refills",
+                 "label": "Bulky Refills"
+               },
+               {
+                 "value": "messy-funnels",
+                 "label": "Messy Funnels"
+               },
+               {
+                 "value": "diy-mixing",
+                 "label": "DIY Mixing"
+               },
+               {
+                 "value": "wait-time",
+                 "label": "Wait Time"
+               }
+             ],
+             "default": "bulky-refills",
+             "info": "Using this method so we can use SVGs"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

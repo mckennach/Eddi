@@ -1,0 +1,40 @@
+tttt
+
+{% raw %}
+<div class="go-cart-item__single" data-line="{{lineIndex}}">
+  <div class="go-cart-item__info-wrapper">
+    <div class="go-cart-item__image">
+      <div class="go-cart-item__image-container">
+        <img class="lazyload blur-up"
+          src="{{#with rImages}}{{20}}{{/with}}"
+          data-src="{{rImageSrcAttr}}"
+          data-widths="{{rImageWidths}}"
+          data-aspectratio="{{featured_image.aspect_ratio}}"
+          data-sizes="auto"
+          tabindex="-1"
+          alt="" />
+      </div>
+    </div>
+
+
+    <div class="go-cart-item__info">
+      <a href="{{url}}" class="go-cart-item__title">{{product_title}}</a>
+      <div class="go-cart-item__price">{% endraw %}{{ 'cart.label.price' | t }}{% raw %}: {{singlePrice}}</div>
+      {{#unless product_has_only_default_variant}}
+        <div class="go-cart-item__variants">
+          {{#each options_with_values}}
+            <div class="go-cart-item__variant"><span class="variant-name">{{name}}: </span><span class="variant-value">{{value}}</span></div>
+          {{/each}}
+        </div>
+      {{/unless}}
+      <div class="go-cart-item__quantity">
+        <span class="go-cart-item__quantity-label">{% endraw %}{{ 'cart.label.quantity' | t }}{% raw %}: </span>
+        <input class="go-cart-item__quantity-number js-go-cart-quantity" type="number" value="{{quantity}}" disabled>
+        <span class="go-cart-item__quantity-button js-go-cart-quantity-plus">+</span>
+        <span class="go-cart-item__quantity-button js-go-cart-quantity-minus">-</span>
+        <a class="go-cart-item__remove {{removeClass}}">{% endraw %}{{ 'cart.general.remove' | t }}{% raw %}</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endraw %}

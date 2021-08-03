@@ -1,0 +1,103 @@
+<section class="ingredients">
+  <div class="container">
+    {% if section.settings.title != blank  %}
+      <div class="ingredients--heading">
+        <h2 class="ingredients--title">{{ section.settings.title }}</h2>
+        {% if section.settings.desc != blank  %}
+          <div class="ingredients--desc">{{ section.settings.desc }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ingredients--list">
+      <div class="cols-3">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'ingredient' %}
+              <div class="ingredients--item-hover">
+                <div class="ingredients--item">
+                  <div class="ingredients--item-a d-flex">
+                    <div class="d-flex flex-column justify-content-between">
+                      {%- if block.settings.title != blank -%}
+                        <h3 class="ingredients--item-title">{{ block.settings.title }}</h3>
+                      {%- endif -%}
+                      {%- if block.settings.desc != blank -%}
+                        <div class="ingredients--item-desc">{{ block.settings.desc }}</div>
+                      {%- endif -%}
+                    </div>
+                    {%- if block.settings.image != blank -%}
+                      {% include 'responsive-image' with image: block.settings.image, image_class: "ingredients--item-img", wrapper_class: "ingredients--item-img-container", max_width: 170, max_height: 170 %}
+                    {%- endif -%}
+                  </div>
+                </div>
+                <div class="ingredients--back-card">
+                  <div class="">
+                    {%- if block.settings.title != blank -%}
+                      <h3 class="ingredients--item-title" style="margin-bottom: 10px;">{{ block.settings.title }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.additional_desc != blank -%}
+                      <div class="ingredients--item-desc">{{ block.settings.additional_desc }}</div>
+                    {%- endif -%}
+                  </div>
+
+                </div>
+              </div>
+
+
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+{% schema %}
+  {
+    "name": "Ingredients",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "ingredient",
+        "name": "Ingredient",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description"
+          },
+          {
+            "type": "richtext",
+            "id": "additional_desc",
+            "label": "Additional Description"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "info": "use PNGs",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

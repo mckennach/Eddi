@@ -1,0 +1,97 @@
+@charset 'UTF-8';
+
+/**
+ * [replace with theme name] | Built with Slate
+ */
+@import '~normalize.css/normalize';
+
+
+// Settings
+@import './variables';
+
+// Go Cart
+// @import "~@bornfight/gocart/src/lib/scss/go-cart";
+@import "~bootstrap/scss/bootstrap";
+
+// Tools
+@import './tools/mixins';
+@import './tools/functions';
+
+
+
+// Core
+@import './core/forms';
+@import './core/helpers';
+@import './core/layout';
+@import './core/media';
+@import './core/responsive-tables';
+@import './core/rte';
+@import './core/typography';
+@import './core/grid';
+
+// Components
+@import './components/announcement-bar';
+@import './components/header-dropdown';
+@import './components/selectric';
+
+@import './components/header';
+@import './components/footer';
+@import './components/cart';
+@import './components/ticker';
+@import './components/buttons';
+@import './components/hero-banner';
+@import './components/accordion';
+@import './components/go-cart';
+@import './components/icons';
+@import './components/placeholders';
+@import './components/responsive-images';
+@import './components/address-forms';
+@import './components/swatch';
+@import './components/product-subscription';
+@import './components/popup';
+@import './components/account-popup';
+
+// Sections
+@import './sections/hero';
+@import './sections/testimonials';
+@import './sections/branded-content';
+@import './sections/blog-posts';
+@import './sections/icon-list';
+@import './sections/collection-list';
+@import './sections/featured-collection';
+@import './sections/featured-starter-set';
+@import './sections/branded-cta';
+@import './sections/image-with-text';
+@import './sections/product-accordions';
+@import './sections/product-weekend-collection';
+@import './sections/product-refill-content';
+@import './sections/product-full-width-text';
+@import './sections/product-fragrance';
+@import './sections/product-natural-scents';
+@import './sections/prodocut-icon-list';
+@import './sections/product-quickview';
+@import './sections/product-note-list';
+@import './sections/product-upsell';
+@import './sections/product-highlighted-notes';
+@import './sections/subscription-popup';
+@import './sections/instagram';
+@import './sections/reviews';
+
+
+// Templates
+@import './templates/about';
+@import './templates/blog';
+@import './templates/gift_card';
+@import './templates/product';
+@import './templates/custom-bundle';
+@import './templates/materials';
+@import './templates/how-it-works';
+@import './templates/contact';
+@import './templates/password';
+@import './templates/not-found';
+@import './templates/default';
+@import './templates/faq';
+@import './templates/recharge';
+
+
+@import './templates/customers/account-main';

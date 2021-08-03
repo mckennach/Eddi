@@ -1,0 +1,286 @@
+footer {
+  background: $teal;
+  padding: 8rem 0 5rem;
+  color: $white;
+  @include mobile-only {
+    padding: 3rem 0;
+  }
+
+  .link-title {
+    @include noto-reg-15;
+    font-weight: bold;
+  }
+
+  .social-icons {
+    padding: 0;
+    @include mobile-only {
+      padding-top: 25px;
+      border-top: 1px solid $white;
+    }
+
+    li {
+      margin-right: 25px;
+    }
+  }
+
+  .link-list {
+    @include mobile-only {
+      grid-row: 2;
+    }
+  }
+
+  .mobile-legal-nav {
+    padding: 0;
+    // margin-left: 10px;
+    li {
+      margin-right: 0;
+      margin-top: 10px;
+
+      a {
+        display: block;
+      }
+    }
+  }
+
+  .divider {
+    margin: 0 10px;
+    position: relative;
+    font-size: 12px;
+    top: -5px;
+    @include mobile-only {
+      display: none;
+    }
+  }
+
+  .desktop-footer-nav {
+    padding: 0;
+
+    ul {
+      padding: 0;
+    }
+
+    li {}
+
+    li a {
+      color: $white;
+      @include noto-reg-16;
+
+      &:hover {
+        color: lighten($white, 10%);
+      }
+    }
+  }
+
+  .mobile-footer-nav {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+    padding: 0;
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      a {
+        color: $white;
+        @include noto-reg-15;
+        font-size: 12px;
+        line-height: 25;
+      }
+    }
+  }
+
+  .newsletter-signup-container {
+    @include mobile-only {
+      grid-row: 1;
+    }
+  }
+
+  .newsletter-signup {
+    @include tablet-up {
+      padding-left: 9rem;
+    }
+    @media (max-width: 1175px) {
+      padding-left: 0;
+    }
+
+    h3 {
+      @include abhaya-reg-40;
+      max-width: 30rem;
+    }
+
+    p {
+      color: $white;
+      @include noto-reg-15;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .input-container {
+      position: relative;
+    }
+
+    input {
+      background: unset;
+      -webkit-border-radius: none;
+      -moz-border-radius: none;
+      border-radius: none;
+      border: none;
+      outline: none;
+      padding-left: 0;
+      border-bottom: 1px solid $white;
+      color: $white;
+      @include noto-reg-12;
+      padding-bottom: 10px;
+      width: 100%;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background: unset;
+        outline: none;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px #005453 inset;
+        -webkit-text-fill-color: $white;
+      }
+
+      &::-moz-placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $white;
+        opacity: 1;
+        /* Firefox */
+        text-transform: uppercase;
+      }
+
+      &:-ms-input-placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $white;
+        opacity: 1;
+        /* Firefox */
+        text-transform: uppercase;
+      }
+
+      &::-webkit-input-placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $white;
+        opacity: 1;
+        /* Firefox */
+        text-transform: uppercase;
+      }
+
+      &:-moz-placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $white;
+        opacity: 1;
+        /* Firefox */
+        text-transform: uppercase;
+      }
+
+      &::-ms-input-placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $white;
+        opacity: 1;
+        /* Firefox */
+        text-transform: uppercase;
+      }
+
+      &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $white;
+        opacity: 1;
+        /* Firefox */
+        text-transform: uppercase;
+      }
+
+      &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: $white;
+        text-transform: uppercase;
+      }
+
+      &::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: $white;
+        text-transform: uppercase;
+      }
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:active,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:hover {
+      -webkit-box-shadow: 0 0 0 60px #005453 inset !important;
+      background-color: #005453 !important;
+      background-clip: content-box !important;
+      -webkit-text-fill-color: $white;
+      border-bottom: 1px solid $white;
+    }
+
+    button {
+      padding: 0;
+      border: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      &:focus,
+      &:hover {
+        background: unset;
+      }
+    }
+  }
+
+  .copyright {
+    color: white;
+    margin-top: 5rem;
+    @include mobile-only {
+      margin-top: 2rem;
+    }
+
+    a,
+    small {
+      @include gotham-book-12;
+      color: white;
+    }
+
+    &__icon {
+      max-width: 5rem;
+      // margin-left: 2rem;
+      margin-bottom: 5px;
+      @include mobile-only {
+        margin-left: unset;
+        max-width: 2.2rem;
+      }
+
+      img {
+        // max-width: 35px;
+      }
+    }
+  }
+
+  .cols-footer {
+    @include mobile-only {
+      margin-top: 2rem;
+    }
+  }
+
+  .alert-danger,
+  .alert-success {
+    background-color: unset !important;
+    border-color: unset !important;
+    border: none !important;
+    text-align: center;
+    letter-spacing: 0;
+    color: white;
+    /* margin-top: 5px; */
+    font-size: 10px;
+    @include mobile-only {
+      font-size: 10px;
+      line-height: 11px;
+    }
+  }
+}

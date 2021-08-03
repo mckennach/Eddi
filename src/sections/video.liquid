@@ -1,0 +1,38 @@
+<section class="branded_img_video">
+
+
+
+  <div class="lazyload branded_img_video--img" data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}"></div>
+
+
+
+</section>
+
+
+{% schema %}
+  {
+    "name": "Branded Image or Video",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Branded Image or Video"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "video_url",
+        "id": "video",
+        "label": "Video"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Branded Image or Video",
+        "category": "Branded Content"
+      }
+    ]
+  }
+{% endschema %}

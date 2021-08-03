@@ -1,0 +1,70 @@
+<section class="intro">
+  <div class="container">
+    {% if section.settings.title != blank %}
+      <h2 class="intro--title">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.desc != blank %}
+      <div class="intro--desc">{{ section.settings.desc }}</div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="mission">
+  <div class="container">
+    <div class="cols-3">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'mission' %}
+              <div class="mission--item col">
+                {% if block.settings.title != blank %}
+                  <h4 class="mission--title">{{ block.settings.title }}</h4>
+                {% endif %}
+                {% if block.settings.desc != blank %}
+                  <div class="mission--desc">{{ block.settings.desc }}</div>
+                {% endif %}
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "About Intro",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Meet Eddi"
+      },
+      {
+        "type": "richtext",
+        "id": "desc",
+        "label": "Description",
+        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "mission",
+        "name": "Mission",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Meet Eddi"
+          },
+          {
+            "type": "richtext",
+            "id": "desc",
+            "label": "Description",
+            "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

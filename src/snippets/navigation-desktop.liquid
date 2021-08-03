@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between align-items-center">
+  <div class="d-flex">
+    <div class="header_main--logo-container">
+      <a href="/" class="header_main--logo-image">
+        <div class="header_main--wordmark-white">
+          {% include "icon-wordmark-white" %}
+        </div>
+        <div class="header_main--wordmark-green">
+          {% include "icon-wordmark-green" %}
+        </div>
+      </a>
+    </div>
+
+    <nav class="header_main--main-nav d-flex" role="navigation">
+      <ul class="d-flex align-items-center justify-content-center">
+        {% for link in linklists[section.settings.menu].links %}
+          {% if link.links != blank %}
+            <li class="header_main--dropdown-container dropdown_has_nav">
+              <a href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+              {% include "header-dropdown" %}
+            </li>
+          {% else %}
+            <li>
+              <a href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <ul class="d-flex align-items-center">
+      {% if shop.customer_accounts_enabled %}
+        <li><a href="/account" class="open-account-modal">{{ 'layout.customer.account' | t }}</a></li>
+      {% endif %}
+      <li>
+        {%- include "go-cart-button" -%}
+      </li>
+    </ul>
+  </div>
+</div>

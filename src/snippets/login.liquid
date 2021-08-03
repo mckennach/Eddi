@@ -1,0 +1,102 @@
+<div class="login">
+  <div class="form-success hide" data-reset-success>
+    {{ 'customer.recover_password.success' | t }}
+  </div>
+
+  <div data-login-form>
+    <div class="heading">
+      <h2 class="account-popup__title">{{ section.settings.title }}</h2>
+      <div class="account-popup__desc">{{ section.settings.desc }}</div>
+    </div>
+
+    {% form 'customer_login' %}
+      <div class="">
+        {{ form.errors | default_errors }}
+      </div>
+      <div class="input-container">
+        <label for="CustomerEmail" class="label-hidden">
+          {{ 'customer.login.email' | t }}
+        </label>
+        <input type="email"
+               name="customer[email]"
+               id="CustomerEmail"
+               class="{% if form.errors contains 'email' %}input-error{% endif %}"
+               placeholder="{{ 'customer.login.email' | t }}"
+               spellcheck="false"
+               autocomplete="off"
+               autocapitalize="off"
+               autofocus>
+
+      </div>
+      <div class="input-container">
+        {% if form.password_needed %}
+          <label for="CustomerPassword" class="label-hidden">
+            {{ 'customer.login.password' | t }}
+          </label>
+          <input type="password"
+                 name="customer[password]"
+                 id="CustomerPassword"
+                 class="{% if form.errors contains 'password' %}input-error{% endif %}"
+                 placeholder="{{ 'customer.login.password' | t }}">
+        {% endif %}
+        {% if form.password_needed %}
+          <a href="#recover" class="forgot" data-recover-toggle>Forgot password?</a>
+        {% endif %}
+      </div>
+
+      <div class="btn-container">
+        <input type="submit" class="button" value="{{ 'customer.login.sign_in' | t }}">
+      </div>
+
+      <div class="create-account">
+        <p>Don’t have an account? <a href="/account/register">Create one.</a>
+      </div>
+
+
+
+
+    {% endform %}
+
+  </div>
+
+  <div class="hide" data-recover-form>
+    <div class="heading">
+      <h3>{{ 'customer.recover_password.title' | t }}</h3>
+      <p>{{ 'customer.recover_password.subtext' | t }}</p>
+    </div>
+
+
+    {% form 'recover_customer_password' %}
+      {{ form.errors | default_errors }}
+
+      {% if form.posted_successfully? %}
+        <span class="hide" data-form-state></span>
+      {% endif %}
+
+
+      <div class="input-container">
+        <label for="RecoverEmail" class="label-hidden">
+          {{ 'customer.recover_password.email' | t }}
+        </label>
+        <input type="email"
+               name="email"
+               id="RecoverEmail"
+               placeholder="{{ 'customer.recover_password.email' | t }}"
+               spellcheck="false"
+               autocapitalize="off">
+      </div>
+
+
+
+      <div class="btn-container">
+        <input type="submit" class="button" value="{{ 'customer.recover_password.submit' | t }}">
+
+        <div data-recover-toggle>
+          {{ 'customer.recover_password.cancel' | t }}
+        </div>
+      </div>
+    {% endform %}
+
+  </div>
+
+</div>

@@ -1,0 +1,42 @@
+.gradient_cta {
+  background: rgb(235,238,255);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(235,238,255,1)), to(rgba(252,228,219,1)));
+  background: -webkit-linear-gradient(top, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+  background: -moz-linear-gradient(top, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+  background: -o-linear-gradient(top, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+  background: linear-gradient(180deg, rgba(235,238,255,1) 0%, rgba(252,228,219,1) 100%);
+  padding: 20px 20px;
+  @include mobile-only {
+    padding: 15px 20px;
+  }
+  &--title {
+    @include abhaya-reg-25;
+    text-align: center;
+  }
+
+  &--desc, &--desc p {
+    text-align: center;
+    @include noto-reg-15;
+  }
+
+  a {
+    @include noto-reg-12;
+    text-transform: uppercase;
+    text-decoration: underline;
+    color: $teal;
+  }
+
+}
+
+.product_quickview--modal {
+  .gradient_cta {
+    padding: 10px 0;
+    &--title {
+      @include noto-reg-15;
+    }
+
+    .w-85 {
+      width: 85%;
+    }
+  }
+}
