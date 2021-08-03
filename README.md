@@ -31,6 +31,49 @@ This way, the sorting function will be able to create the custom bundles.
 - Each variant will be a group of 5. Make sure to upload all 5 at the same time at the end of the `Media Library`, and attach the *first* image to the variant it belongs to.
   - If everything is out of order, the image grouping might be word
 
+## Custom Fields
+
+**Refill Content:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.33.23_PM.png?v=1627972423 "Refill Content")
+
+
+**Upsell Container:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.34.29_PM.png?v=1627972480 "Upsell Content")
+
+
+**Icon List:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.35.29_PM.png?v=1627972549 "Icon List")
+
+
+**Accordion:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.36.33_PM.png?v=1627972617 "Icon List")
+
+
+**Notes:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.38.48_PM.png?v=1627972745 "Icon List")
+
+
+**Full Width + Image:**
+
+![alt text](https://cdn.shopify.com/s/files/1/0545/0137/6193/files/Screen_Shot_2021-08-02_at_11.39.59_PM.png?v=1627972820 "Icon List")
+
+**Flagrance Section:**
+
+**Natural Scent:**
+
+**Highlighted Notes:**
+
+**Press Slideshow:**
+
+**Weekend Collection:**
+
+
+
 ## Links & Guide
 
 ***Links to reference for shop maintenance/management***
